@@ -5,5 +5,35 @@
              version="3.0">
     <persistence-unit name="default">
 
+        <class>model.ApprentiEntity</class>
+        <class>model.EntrepriseEntity</class>
+        <class>model.EvaluationecoleEntity</class>
+        <class>model.FeedbackapprentiEntity</class>
+        <class>model.MaitreapprentissageEntity</class>
+        <class>model.MemoireEntity</class>
+        <class>model.MissionEntity</class>
+        <class>model.PersonneEntity</class>
+        <class>model.SoutenanceEntity</class>
+        <class>model.TuteurEntity</class>
+        <class>model.UtilisateurEntity</class>
+        <class>model.VisiteEntity</class>
+        <properties>
+            <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/tutorat"/>
+            <property name="toplink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="toplink.jdbc.user" value="sophieminos"/>
+            <property name="toplink.jdbc.password" value="Hermione1+"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/tutorat"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="hibernate.connection.username" value="sophieminos"/>
+            <property name="hibernate.connection.password" value="Hermione1+"/>
+            <property name="openjpa.ConnectionURL" value="jdbc:mysql://localhost:3306/tutorat"/>
+            <property name="openjpa.ConnectionDriverName" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="openjpa.ConnectionUserName" value="sophieminos"/>
+            <property name="openjpa.ConnectionPassword" value="Hermione1+"/>
+            <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/tutorat"/>
+            <property name="eclipselink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="eclipselink.jdbc.user" value="sophieminos"/>
+            <property name="eclipselink.jdbc.password" value="Hermione1+"/>
+        </properties>
     </persistence-unit>
 </persistence>
