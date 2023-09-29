@@ -1,8 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%
-    String user = "Sophie";
-%>
 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +11,7 @@
 
 <body>
 <div style="float:left; text-align: center; position: fixed;" class="btn-retour">
-    <a href="index.jsp">Menu</a>
+    <a href="">Menu</a>
 </div>
 
 <div class="content" id="general-content">

@@ -24,8 +24,6 @@ public class ConnexionServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
 
-
-
         session.setAttribute("nom_utilisateur", nom);
         session.setAttribute("mot_de_passe", prenom);
 
