@@ -1,45 +1,47 @@
-package model;
+package com.efrei.projetfinal.model;
 
 import jakarta.persistence.*;
 
+import java.sql.Date;
+
 @Entity
-@Table(name = "memoire", schema = "tutorat", catalog = "")
-public class MemoireEntity {
+@Table(name = "soutenance", schema = "tutorat", catalog = "")
+public class SoutenanceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "ID_memoire", nullable = false)
-    private int idMemoire;
+    @Column(name = "ID_Soutenance", nullable = false)
+    private int idSoutenance;
     @Basic
-    @Column(name = "Theme", nullable = true, length = 150)
-    private String theme;
+    @Column(name = "DateSoutenance", nullable = true)
+    private Date dateSoutenance;
     @Basic
     @Column(name = "NoteFinale", nullable = true, precision = 0)
-    private Double noteFinale;
+    private Integer noteFinale;
     @Basic
     @Column(name = "Commentaire", nullable = true, length = 150)
     private String commentaire;
 
-    public int getIdMemoire() {
-        return idMemoire;
+    public int getIdSoutenance() {
+        return idSoutenance;
     }
 
-    public void setIdMemoire(int idMemoire) {
-        this.idMemoire = idMemoire;
+    public void setIdSoutenance(int idSoutenance) {
+        this.idSoutenance = idSoutenance;
     }
 
-    public String getTheme() {
-        return theme;
+    public Date getDateSoutenance() {
+        return dateSoutenance;
     }
 
-    public void setTheme(String theme) {
-        this.theme = theme;
+    public void setDateSoutenance(Date dateSoutenance) {
+        this.dateSoutenance = dateSoutenance;
     }
 
-    public Double getNoteFinale() {
+    public Integer getNoteFinale() {
         return noteFinale;
     }
 
-    public void setNoteFinale(Double noteFinale) {
+    public void setNoteFinale(Integer noteFinale) {
         this.noteFinale = noteFinale;
     }
 
@@ -56,10 +58,11 @@ public class MemoireEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        MemoireEntity that = (MemoireEntity) o;
+        SoutenanceEntity that = (SoutenanceEntity) o;
 
-        if (idMemoire != that.idMemoire) return false;
-        if (theme != null ? !theme.equals(that.theme) : that.theme != null) return false;
+        if (idSoutenance != that.idSoutenance) return false;
+        if (dateSoutenance != null ? !dateSoutenance.equals(that.dateSoutenance) : that.dateSoutenance != null)
+            return false;
         if (noteFinale != null ? !noteFinale.equals(that.noteFinale) : that.noteFinale != null) return false;
         if (commentaire != null ? !commentaire.equals(that.commentaire) : that.commentaire != null) return false;
 
@@ -68,8 +71,8 @@ public class MemoireEntity {
 
     @Override
     public int hashCode() {
-        int result = idMemoire;
-        result = 31 * result + (theme != null ? theme.hashCode() : 0);
+        int result = idSoutenance;
+        result = 31 * result + (dateSoutenance != null ? dateSoutenance.hashCode() : 0);
         result = 31 * result + (noteFinale != null ? noteFinale.hashCode() : 0);
         result = 31 * result + (commentaire != null ? commentaire.hashCode() : 0);
         return result;

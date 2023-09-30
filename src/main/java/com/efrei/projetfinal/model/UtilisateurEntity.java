@@ -1,4 +1,4 @@
-package model;
+package com.efrei.projetfinal.model;
 
 import jakarta.persistence.*;
 

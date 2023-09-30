@@ -5,7 +5,7 @@
          version="5.0">
     <jsp-config>
         <taglib>
-            <taglib-uri>http://java.sun.com/jsp/jstl/core</taglib-uri>
+            <taglib-uri>http://java.sun.com/jstl/core</taglib-uri>
             <taglib-location>/WEB-INF/lib/jstl.jar</taglib-location>
         </taglib>
     </jsp-config>
@@ -19,6 +19,23 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ConnexionServlet</servlet-name>
+        <servlet-class>com.efrei.projetfinal.ConnexionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ConnexionServlet</servlet-name>
+        <url-pattern>/connexion</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>InscriptionServlet</servlet-name>
+        <servlet-class>com.efrei.projetfinal.InscriptionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InscriptionServlet</servlet-name>
+        <url-pattern>/inscription</url-pattern>
+    </servlet-mapping>
 
 
 

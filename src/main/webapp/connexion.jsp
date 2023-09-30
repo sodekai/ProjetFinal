@@ -1,14 +1,14 @@
 <%@ include file="header.jsp"%>
 
 <h1>Connexion</h1>
-<form action="./connexion" method="get" class="container bordered">
+<form action="connexion" method="post" class="container bordered">
     <div>
-        <label for="login">Login</label>
-        <input type="text" name="login" id="login" />
+        <label for="nomUtilisateur">Login</label>
+        <input type="text" name="nomUtilisateur" id="nomUtilisateur"/>
     </div>
     <div>
-        <label for="mdp">Password</label>
-        <input type="password" name="mdp" id="mdp" />
+        <label for="motDePasse">Password</label>
+        <input type="password" name="motDePasse" id="motDePasse"/>
     </div>
     <button>Valider</button>
 </form>
