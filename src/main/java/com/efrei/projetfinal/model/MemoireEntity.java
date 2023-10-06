@@ -7,16 +7,16 @@ import jakarta.persistence.*;
 public class MemoireEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "ID_memoire", nullable = false)
+    @Column(name = "Id_memoire", nullable = false)
     private int idMemoire;
     @Basic
-    @Column(name = "Theme", nullable = true, length = 150)
+    @Column(name = "theme", nullable = true, length = 150)
     private String theme;
     @Basic
-    @Column(name = "NoteFinale", nullable = true, precision = 0)
+    @Column(name = "note_finale", nullable = true, precision = 0)
     private Double noteFinale;
     @Basic
-    @Column(name = "Commentaire", nullable = true, length = 150)
+    @Column(name = "commentaire", nullable = true, length = 150)
     private String commentaire;
 
     public int getIdMemoire() {

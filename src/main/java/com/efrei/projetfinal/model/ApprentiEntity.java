@@ -7,30 +7,33 @@ import jakarta.persistence.*;
 public class ApprentiEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "ID_Utilisateur", nullable = false)
-    private int idUtilisateur;
+    @Column(name = "id_apprenti", nullable = false)
+    private int idApprenti;
     @Basic
-    @Column(name = "AnneeAcademique", nullable = true, length = 150)
+    @Column(name = "annee_academique", nullable = true, length = 150)
     private String anneeAcademique;
     @Basic
-    @Column(name = "Majeure", nullable = true, length = 150)
+    @Column(name = "majeure", nullable = true, length = 150)
     private String majeure;
     @Basic
-    @Column(name = "ID_FeedBack", nullable = true)
-    private Integer idFeedBack;
+    @Column(name = "id_tuteur", nullable = true)
+    private Integer idTuteur;
     @Basic
-    @Column(name = "ID_evaluation", nullable = true)
-    private Integer idEvaluation;
+    @Column(name = "id_maitre_apprentissage", nullable = true)
+    private Integer idMaitreApprentissage;
     @Basic
-    @Column(name = "ID_entreprise", nullable = true)
+    @Column(name = "id_entreprise", nullable = true)
     private Integer idEntreprise;
+    @Basic
+    @Column(name = "id_utilisateur", nullable = false)
+    private int idUtilisateur;
 
-    public int getIdUtilisateur() {
-        return idUtilisateur;
+    public int getIdApprenti() {
+        return idApprenti;
     }
 
-    public void setIdUtilisateur(int idUtilisateur) {
-        this.idUtilisateur = idUtilisateur;
+    public void setIdApprenti(int idApprenti) {
+        this.idApprenti = idApprenti;
     }
 
     public String getAnneeAcademique() {
@@ -49,20 +52,20 @@ public class ApprentiEntity {
         this.majeure = majeure;
     }
 
-    public Integer getIdFeedBack() {
-        return idFeedBack;
+    public Integer getIdTuteur() {
+        return idTuteur;
     }
 
-    public void setIdFeedBack(Integer idFeedBack) {
-        this.idFeedBack = idFeedBack;
+    public void setIdTuteur(Integer idTuteur) {
+        this.idTuteur = idTuteur;
     }
 
-    public Integer getIdEvaluation() {
-        return idEvaluation;
+    public Integer getIdMaitreApprentissage() {
+        return idMaitreApprentissage;
     }
 
-    public void setIdEvaluation(Integer idEvaluation) {
-        this.idEvaluation = idEvaluation;
+    public void setIdMaitreApprentissage(Integer idMaitreApprentissage) {
+        this.idMaitreApprentissage = idMaitreApprentissage;
     }
 
     public Integer getIdEntreprise() {
@@ -73,6 +76,14 @@ public class ApprentiEntity {
         this.idEntreprise = idEntreprise;
     }
 
+    public int getIdUtilisateur() {
+        return idUtilisateur;
+    }
+
+    public void setIdUtilisateur(int idUtilisateur) {
+        this.idUtilisateur = idUtilisateur;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -80,12 +91,14 @@ public class ApprentiEntity {
 
         ApprentiEntity that = (ApprentiEntity) o;
 
+        if (idApprenti != that.idApprenti) return false;
         if (idUtilisateur != that.idUtilisateur) return false;
         if (anneeAcademique != null ? !anneeAcademique.equals(that.anneeAcademique) : that.anneeAcademique != null)
             return false;
         if (majeure != null ? !majeure.equals(that.majeure) : that.majeure != null) return false;
-        if (idFeedBack != null ? !idFeedBack.equals(that.idFeedBack) : that.idFeedBack != null) return false;
-        if (idEvaluation != null ? !idEvaluation.equals(that.idEvaluation) : that.idEvaluation != null) return false;
+        if (idTuteur != null ? !idTuteur.equals(that.idTuteur) : that.idTuteur != null) return false;
+        if (idMaitreApprentissage != null ? !idMaitreApprentissage.equals(that.idMaitreApprentissage) : that.idMaitreApprentissage != null)
+            return false;
         if (idEntreprise != null ? !idEntreprise.equals(that.idEntreprise) : that.idEntreprise != null) return false;
 
         return true;
@@ -93,12 +106,13 @@ public class ApprentiEntity {
 
     @Override
     public int hashCode() {
-        int result = idUtilisateur;
+        int result = idApprenti;
         result = 31 * result + (anneeAcademique != null ? anneeAcademique.hashCode() : 0);
         result = 31 * result + (majeure != null ? majeure.hashCode() : 0);
-        result = 31 * result + (idFeedBack != null ? idFeedBack.hashCode() : 0);
-        result = 31 * result + (idEvaluation != null ? idEvaluation.hashCode() : 0);
+        result = 31 * result + (idTuteur != null ? idTuteur.hashCode() : 0);
+        result = 31 * result + (idMaitreApprentissage != null ? idMaitreApprentissage.hashCode() : 0);
         result = 31 * result + (idEntreprise != null ? idEntreprise.hashCode() : 0);
+        result = 31 * result + idUtilisateur;
         return result;
     }
 }

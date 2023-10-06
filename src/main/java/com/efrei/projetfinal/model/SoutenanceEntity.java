@@ -9,16 +9,16 @@ import java.sql.Date;
 public class SoutenanceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "ID_Soutenance", nullable = false)
+    @Column(name = "Id_soutenance", nullable = false)
     private int idSoutenance;
     @Basic
-    @Column(name = "DateSoutenance", nullable = true)
+    @Column(name = "date_soutenance", nullable = true)
     private Date dateSoutenance;
     @Basic
-    @Column(name = "NoteFinale", nullable = true, precision = 0)
-    private Integer noteFinale;
+    @Column(name = "note_finale", nullable = true, precision = 0)
+    private Double noteFinale;
     @Basic
-    @Column(name = "Commentaire", nullable = true, length = 150)
+    @Column(name = "commentaire", nullable = true, length = 150)
     private String commentaire;
 
     public int getIdSoutenance() {
@@ -37,11 +37,11 @@ public class SoutenanceEntity {
         this.dateSoutenance = dateSoutenance;
     }
 
-    public Integer getNoteFinale() {
+    public Double getNoteFinale() {
         return noteFinale;
     }
 
-    public void setNoteFinale(Integer noteFinale) {
+    public void setNoteFinale(Double noteFinale) {
         this.noteFinale = noteFinale;
     }
 

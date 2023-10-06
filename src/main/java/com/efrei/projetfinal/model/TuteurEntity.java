@@ -7,8 +7,19 @@ import jakarta.persistence.*;
 public class TuteurEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "ID_Utilisateur", nullable = false)
+    @Column(name = "id_tuteur", nullable = false)
+    private int idTuteur;
+    @Basic
+    @Column(name = "id_utilisateur", nullable = false)
     private int idUtilisateur;
+
+    public int getIdTuteur() {
+        return idTuteur;
+    }
+
+    public void setIdTuteur(int idTuteur) {
+        this.idTuteur = idTuteur;
+    }
 
     public int getIdUtilisateur() {
         return idUtilisateur;
@@ -25,6 +36,7 @@ public class TuteurEntity {
 
         TuteurEntity that = (TuteurEntity) o;
 
+        if (idTuteur != that.idTuteur) return false;
         if (idUtilisateur != that.idUtilisateur) return false;
 
         return true;
@@ -32,6 +44,8 @@ public class TuteurEntity {
 
     @Override
     public int hashCode() {
-        return idUtilisateur;
+        int result = idTuteur;
+        result = 31 * result + idUtilisateur;
+        return result;
     }
 }

@@ -3,28 +3,31 @@ package com.efrei.projetfinal.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "maitreapprentissage", schema = "tutorat", catalog = "")
-public class MaitreapprentissageEntity {
+@Table(name = "maitre_apprentissage", schema = "tutorat", catalog = "")
+public class MaitreApprentissageEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "ID_personne", nullable = false)
-    private int idPersonne;
+    @Column(name = "id_maitre_apprentissage", nullable = false)
+    private int idMaitreApprentissage;
     @Basic
-    @Column(name = "Remarque", nullable = true, length = 150)
+    @Column(name = "remarque", nullable = true, length = 150)
     private String remarque;
     @Basic
-    @Column(name = "Poste", nullable = true, length = 150)
+    @Column(name = "poste", nullable = true, length = 150)
     private String poste;
     @Basic
-    @Column(name = "ID_entreprise", nullable = true)
+    @Column(name = "id_entreprise", nullable = true)
     private Integer idEntreprise;
+    @Basic
+    @Column(name = "id_personne", nullable = false)
+    private int idPersonne;
 
-    public int getIdPersonne() {
-        return idPersonne;
+    public int getIdMaitreApprentissage() {
+        return idMaitreApprentissage;
     }
 
-    public void setIdPersonne(int idPersonne) {
-        this.idPersonne = idPersonne;
+    public void setIdMaitreApprentissage(int idMaitreApprentissage) {
+        this.idMaitreApprentissage = idMaitreApprentissage;
     }
 
     public String getRemarque() {
@@ -51,13 +54,22 @@ public class MaitreapprentissageEntity {
         this.idEntreprise = idEntreprise;
     }
 
+    public int getIdPersonne() {
+        return idPersonne;
+    }
+
+    public void setIdPersonne(int idPersonne) {
+        this.idPersonne = idPersonne;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        MaitreapprentissageEntity that = (MaitreapprentissageEntity) o;
+        MaitreApprentissageEntity that = (MaitreApprentissageEntity) o;
 
+        if (idMaitreApprentissage != that.idMaitreApprentissage) return false;
         if (idPersonne != that.idPersonne) return false;
         if (remarque != null ? !remarque.equals(that.remarque) : that.remarque != null) return false;
         if (poste != null ? !poste.equals(that.poste) : that.poste != null) return false;
@@ -68,10 +80,11 @@ public class MaitreapprentissageEntity {
 
     @Override
     public int hashCode() {
-        int result = idPersonne;
+        int result = idMaitreApprentissage;
         result = 31 * result + (remarque != null ? remarque.hashCode() : 0);
         result = 31 * result + (poste != null ? poste.hashCode() : 0);
         result = 31 * result + (idEntreprise != null ? idEntreprise.hashCode() : 0);
+        result = 31 * result + idPersonne;
         return result;
     }
 }
