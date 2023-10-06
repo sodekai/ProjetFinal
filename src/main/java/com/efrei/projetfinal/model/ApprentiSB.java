@@ -16,20 +16,16 @@ public class ApprentiSB {
     EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
     EntityManager em = entityManagerFactory.createEntityManager();
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
     @EJB
     private UtilisateurSB utilisateurSB;
-    @EJB
-    private PersonneSB personneSB;
+
 
     public List<ApprentiEntity> get_all_apprentis(){
         Query q = em.createQuery("select a from ApprentiEntity a");
         return q.getResultList();
     }
 
-    public Apprenti createApprenti(String nom, String prenom, String adresseElectronique, String telephone, String nomUtilisateur, String motDePasse, String anneeAcademique, String majeure, int idEntreprise){
+    public void createApprenti(String nom, String prenom, String adresseElectronique, String telephone, String nomUtilisateur, String motDePasse, String anneeAcademique, String majeure, int idEntreprise){
         /*EvaluationEcole evaluation;
         if(Integer.getInteger(String.valueOf(idEvaluation)) != null){
             evaluation = new EvaluationEcole();
@@ -41,7 +37,7 @@ public class ApprentiSB {
             feedback = new FeedbackApprenti();
         } else {
             feedback = null;
-        }*/
+        }
         Entreprise entreprise;
         if(Integer.getInteger(String.valueOf(idEntreprise)) != null){
             entreprise = new Entreprise();
@@ -55,7 +51,16 @@ public class ApprentiSB {
         entityManager.persist(apprenti);
         entityManager.getTransaction().commit();
 
-        return apprenti;
+        return apprenti;*/
+
+        utilisateurSB.createUtilisateur(nom, prenom, adresseElectronique, telephone, nomUtilisateur, motDePasse);
+
+        Query qCreateApprenti = em.createNativeQuery(
+                "insert into ApprentiEntity (anneeAcademique, majeure, idEntreprise) VALUES (:anneeAcademique, :majeure, :idEntreprise)")
+                .setParameter("nomUtilisateur", nomUtilisateur)
+                .setParameter("motDePasse", motDePasse);
+
+
     }
 
 }

@@ -1,7 +1,5 @@
 package com.efrei.projetfinal.model;
 
-import com.efrei.projetfinal.Personne;
-import com.efrei.projetfinal.Utilisateur;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.*;
 
@@ -15,10 +13,14 @@ public class PersonneSB {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public Personne createPersonne(String nom, String prenom, String adresseElectronique, String telephone) {
-        Personne personne = new Personne(nom, prenom, adresseElectronique, telephone);
-        entityManager.persist(personne);
-        return personne;
+    public void createPersonne(String nom, String prenom, String adresseElectronique, String telephone) {
+        Query qCreatePersonne = em.createNativeQuery(
+                        "insert into PersonneEntity (nom, prenom, adresseElectronique, telephone) VALUES (:nom, :prenom, :adresseElectronique, :telephone)")
+                .setParameter("nom", nom)
+                .setParameter("prenom", prenom)
+                .setParameter("adresseElectronique", adresseElectronique)
+                .setParameter("telephone", telephone);
+
     }
 
 

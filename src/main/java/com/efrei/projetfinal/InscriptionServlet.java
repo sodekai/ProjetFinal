@@ -43,15 +43,15 @@ public class InscriptionServlet extends HttpServlet {
             String anneeAcademique = request.getParameter("anneeAcademique");
             String majeure = request.getParameter("majeure");
             int idEntreprise = Integer.parseInt(request.getParameter("idEntreprise"));
-            Apprenti apprenti = apprentiSB.createApprenti(nom, prenom, adresseElectronique, telephone, nomUtilisateur, motDePasse, anneeAcademique, majeure, idEntreprise);
-            Utilisateur utilisateur = (Utilisateur) apprenti;
+            //Apprenti apprenti = apprentiSB.createApprenti(nom, prenom, adresseElectronique, telephone, nomUtilisateur, motDePasse, anneeAcademique, majeure, idEntreprise);
+            //Utilisateur utilisateur = (Utilisateur) apprenti;
         //} else if(typeUtilisateur.equals("tuteur")){
 
         //}
 
         HttpSession session = request.getSession();
-        session.setAttribute("utilisateur", utilisateur);
-        request.setAttribute("utilisateur_session", utilisateur);
+        //session.setAttribute("utilisateur", utilisateur);
+        //request.setAttribute("utilisateur_session", utilisateur);
 
         request.getRequestDispatcher("/hello_user.jsp").forward(request, response);
 
