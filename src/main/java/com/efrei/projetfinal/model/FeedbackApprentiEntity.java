@@ -12,9 +12,9 @@ public class FeedbackApprentiEntity {
     @Basic
     @Column(name = "avis", nullable = true, length = 150)
     private String avis;
-    @Basic
-    @Column(name = "id_apprenti", nullable = false)
-    private int idApprenti;
+    @OneToOne
+    @JoinColumn(name = "id_apprenti")
+    private ApprentiEntity apprenti;
 
     public int getIdFeedbackApprenti() {
         return idFeedbackApprenti;
@@ -32,14 +32,13 @@ public class FeedbackApprentiEntity {
         this.avis = avis;
     }
 
-    public int getIdApprenti() {
-        return idApprenti;
+    public ApprentiEntity getApprenti() {
+        return apprenti;
     }
 
-    public void setIdApprenti(int idApprenti) {
-        this.idApprenti = idApprenti;
+    public void setApprenti(ApprentiEntity apprenti) {
+        this.apprenti = apprenti;
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -48,7 +47,7 @@ public class FeedbackApprentiEntity {
         FeedbackApprentiEntity that = (FeedbackApprentiEntity) o;
 
         if (idFeedbackApprenti != that.idFeedbackApprenti) return false;
-        if (idApprenti != that.idApprenti) return false;
+        if (apprenti != that.apprenti) return false;
         if (avis != null ? !avis.equals(that.avis) : that.avis != null) return false;
 
         return true;
@@ -58,7 +57,7 @@ public class FeedbackApprentiEntity {
     public int hashCode() {
         int result = idFeedbackApprenti;
         result = 31 * result + (avis != null ? avis.hashCode() : 0);
-        result = 31 * result + idApprenti;
+        result = 31 * result + (apprenti != null ? apprenti.hashCode() : 0);
         return result;
     }
 }

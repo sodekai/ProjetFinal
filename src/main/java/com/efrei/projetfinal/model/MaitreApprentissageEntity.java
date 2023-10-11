@@ -15,12 +15,13 @@ public class MaitreApprentissageEntity {
     @Basic
     @Column(name = "poste", nullable = true, length = 150)
     private String poste;
-    @Basic
-    @Column(name = "id_entreprise", nullable = true)
-    private Integer idEntreprise;
-    @Basic
-    @Column(name = "id_personne", nullable = false)
-    private int idPersonne;
+
+    @OneToOne
+    @JoinColumn(name = "id_entreprise")
+    private EntrepriseEntity entreprise;
+    @OneToOne
+    @JoinColumn(name = "id_personne")
+    private PersonneEntity personne;
 
     public int getIdMaitreApprentissage() {
         return idMaitreApprentissage;
@@ -46,20 +47,20 @@ public class MaitreApprentissageEntity {
         this.poste = poste;
     }
 
-    public Integer getIdEntreprise() {
-        return idEntreprise;
+    public EntrepriseEntity getEntreprise() {
+        return entreprise;
     }
 
-    public void setIdEntreprise(Integer idEntreprise) {
-        this.idEntreprise = idEntreprise;
+    public void setEntreprise(EntrepriseEntity entreprise) {
+        this.entreprise = entreprise;
     }
 
-    public int getIdPersonne() {
-        return idPersonne;
+    public PersonneEntity getPersonne() {
+        return personne;
     }
 
-    public void setIdPersonne(int idPersonne) {
-        this.idPersonne = idPersonne;
+    public void setPersonne(PersonneEntity idPersonne) {
+        this.personne = personne;
     }
 
     @Override
@@ -70,10 +71,10 @@ public class MaitreApprentissageEntity {
         MaitreApprentissageEntity that = (MaitreApprentissageEntity) o;
 
         if (idMaitreApprentissage != that.idMaitreApprentissage) return false;
-        if (idPersonne != that.idPersonne) return false;
+        if (personne != that.personne) return false;
         if (remarque != null ? !remarque.equals(that.remarque) : that.remarque != null) return false;
         if (poste != null ? !poste.equals(that.poste) : that.poste != null) return false;
-        if (idEntreprise != null ? !idEntreprise.equals(that.idEntreprise) : that.idEntreprise != null) return false;
+        if (entreprise != null ? !entreprise.equals(that.entreprise) : that.entreprise != null) return false;
 
         return true;
     }
@@ -83,8 +84,8 @@ public class MaitreApprentissageEntity {
         int result = idMaitreApprentissage;
         result = 31 * result + (remarque != null ? remarque.hashCode() : 0);
         result = 31 * result + (poste != null ? poste.hashCode() : 0);
-        result = 31 * result + (idEntreprise != null ? idEntreprise.hashCode() : 0);
-        result = 31 * result + idPersonne;
+        result = 31 * result + (entreprise != null ? entreprise.hashCode() : 0);
+        result = 31 * result + (personne != null ? personne.hashCode() : 0);
         return result;
     }
 }

@@ -18,9 +18,9 @@ public class MissionEntity {
     @Basic
     @Column(name = "commentaires", nullable = true, length = 150)
     private String commentaires;
-    @Basic
-    @Column(name = "id_apprenti", nullable = true)
-    private Integer idApprenti;
+    @OneToOne
+    @JoinColumn(name = "id_apprenti")
+    private ApprentiEntity apprenti;
 
     public int getIdMission() {
         return idMission;
@@ -54,12 +54,12 @@ public class MissionEntity {
         this.commentaires = commentaires;
     }
 
-    public Integer getIdApprenti() {
-        return idApprenti;
+    public ApprentiEntity getIdApprenti() {
+        return apprenti;
     }
 
-    public void setIdApprenti(Integer idApprenti) {
-        this.idApprenti = idApprenti;
+    public void setApprenti(ApprentiEntity apprenti) {
+        this.apprenti = apprenti;
     }
 
     @Override
@@ -73,7 +73,7 @@ public class MissionEntity {
         if (motsCles != null ? !motsCles.equals(that.motsCles) : that.motsCles != null) return false;
         if (metierCible != null ? !metierCible.equals(that.metierCible) : that.metierCible != null) return false;
         if (commentaires != null ? !commentaires.equals(that.commentaires) : that.commentaires != null) return false;
-        if (idApprenti != null ? !idApprenti.equals(that.idApprenti) : that.idApprenti != null) return false;
+        if (apprenti != null ? !apprenti.equals(that.apprenti) : that.apprenti != null) return false;
 
         return true;
     }
@@ -84,7 +84,7 @@ public class MissionEntity {
         result = 31 * result + (motsCles != null ? motsCles.hashCode() : 0);
         result = 31 * result + (metierCible != null ? metierCible.hashCode() : 0);
         result = 31 * result + (commentaires != null ? commentaires.hashCode() : 0);
-        result = 31 * result + (idApprenti != null ? idApprenti.hashCode() : 0);
+        result = 31 * result + (apprenti != null ? apprenti.hashCode() : 0);
         return result;
     }
 }

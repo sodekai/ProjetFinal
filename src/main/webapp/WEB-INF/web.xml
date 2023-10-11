@@ -13,6 +13,7 @@
     <servlet>
         <servlet-name>IndexServlet</servlet-name>
         <servlet-class>com.efrei.projetfinal.IndexServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>IndexServlet</servlet-name>
@@ -37,6 +38,22 @@
         <url-pattern>/inscription</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ApprentiInfoServlet</servlet-name>
+        <servlet-class>com.efrei.projetfinal.ApprentiInfoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ApprentiInfoServlet</servlet-name>
+        <url-pattern>/apprenti-infos</url-pattern>
+    </servlet-mapping>
 
+    <filter>
+        <filter-name>CORSFilter</filter-name>
+        <filter-class>com.efrei.projetfinal.CORSFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CORSFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 </web-app>

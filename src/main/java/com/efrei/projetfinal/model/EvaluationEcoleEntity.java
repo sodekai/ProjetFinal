@@ -9,15 +9,16 @@ public class EvaluationEcoleEntity {
     @Id
     @Column(name = "Id_evaluation_ecole", nullable = false)
     private int idEvaluationEcole;
-    @Basic
-    @Column(name = "id_apprenti", nullable = false)
-    private int idApprenti;
-    @Basic
-    @Column(name = "Id_soutenance", nullable = true)
-    private Integer idSoutenance;
-    @Basic
-    @Column(name = "Id_memoire", nullable = true)
-    private Integer idMemoire;
+
+    @OneToOne
+    @JoinColumn(name = "id_apprenti")
+    private ApprentiEntity apprenti;
+    @OneToOne
+    @JoinColumn(name = "Id_soutenance")
+    private SoutenanceEntity soutenance;
+    @OneToOne
+    @JoinColumn(name = "Id_memoire")
+    private MemoireEntity memoire;
 
     public int getIdEvaluationEcole() {
         return idEvaluationEcole;
@@ -27,28 +28,28 @@ public class EvaluationEcoleEntity {
         this.idEvaluationEcole = idEvaluationEcole;
     }
 
-    public int getIdApprenti() {
-        return idApprenti;
+    public ApprentiEntity getApprenti() {
+        return apprenti;
     }
 
-    public void setIdApprenti(int idApprenti) {
-        this.idApprenti = idApprenti;
+    public void setApprenti(ApprentiEntity apprenti) {
+        this.apprenti = apprenti;
     }
 
-    public Integer getIdSoutenance() {
-        return idSoutenance;
+    public SoutenanceEntity getSoutenance() {
+        return soutenance;
     }
 
-    public void setIdSoutenance(Integer idSoutenance) {
-        this.idSoutenance = idSoutenance;
+    public void setSoutenance(SoutenanceEntity soutenance) {
+        this.soutenance = soutenance;
     }
 
-    public Integer getIdMemoire() {
-        return idMemoire;
+    public MemoireEntity getMemoire() {
+        return memoire;
     }
 
-    public void setIdMemoire(Integer idMemoire) {
-        this.idMemoire = idMemoire;
+    public void setMemoire(MemoireEntity memoire) {
+        this.memoire = memoire;
     }
 
     @Override
@@ -59,9 +60,9 @@ public class EvaluationEcoleEntity {
         EvaluationEcoleEntity that = (EvaluationEcoleEntity) o;
 
         if (idEvaluationEcole != that.idEvaluationEcole) return false;
-        if (idApprenti != that.idApprenti) return false;
-        if (idSoutenance != null ? !idSoutenance.equals(that.idSoutenance) : that.idSoutenance != null) return false;
-        if (idMemoire != null ? !idMemoire.equals(that.idMemoire) : that.idMemoire != null) return false;
+        if (apprenti != that.apprenti) return false;
+        if (soutenance != null ? !soutenance.equals(that.soutenance) : that.soutenance != null) return false;
+        if (memoire != null ? !memoire.equals(that.memoire) : that.memoire != null) return false;
 
         return true;
     }
@@ -69,9 +70,9 @@ public class EvaluationEcoleEntity {
     @Override
     public int hashCode() {
         int result = idEvaluationEcole;
-        result = 31 * result + idApprenti;
-        result = 31 * result + (idSoutenance != null ? idSoutenance.hashCode() : 0);
-        result = 31 * result + (idMemoire != null ? idMemoire.hashCode() : 0);
+        result = 31 * result + (apprenti != null ? apprenti.hashCode() : 0);
+        result = 31 * result + (soutenance != null ? soutenance.hashCode() : 0);
+        result = 31 * result + (memoire != null ? memoire.hashCode() : 0);
         return result;
     }
 }

@@ -15,9 +15,10 @@ public class UtilisateurEntity {
     @Basic
     @Column(name = "mot_de_passe", nullable = true, length = 50)
     private String motDePasse;
-    @Basic
-    @Column(name = "id_personne", nullable = false)
-    private int idPersonne;
+
+    @OneToOne
+    @JoinColumn(name = "id_personne")
+    private PersonneEntity personne;
 
     public int getIdUtilisateur() {
         return idUtilisateur;
@@ -43,12 +44,12 @@ public class UtilisateurEntity {
         this.motDePasse = motDePasse;
     }
 
-    public int getIdPersonne() {
-        return idPersonne;
+    public PersonneEntity getPersonne() {
+        return personne;
     }
 
-    public void setIdPersonne(int idPersonne) {
-        this.idPersonne = idPersonne;
+    public void setPersonne(PersonneEntity idPersonne) {
+        this.personne = personne;
     }
 
     @Override
@@ -59,7 +60,7 @@ public class UtilisateurEntity {
         UtilisateurEntity that = (UtilisateurEntity) o;
 
         if (idUtilisateur != that.idUtilisateur) return false;
-        if (idPersonne != that.idPersonne) return false;
+        if (personne != that.personne) return false;
         if (nomUtilisateur != null ? !nomUtilisateur.equals(that.nomUtilisateur) : that.nomUtilisateur != null)
             return false;
         if (motDePasse != null ? !motDePasse.equals(that.motDePasse) : that.motDePasse != null) return false;
@@ -72,7 +73,7 @@ public class UtilisateurEntity {
         int result = idUtilisateur;
         result = 31 * result + (nomUtilisateur != null ? nomUtilisateur.hashCode() : 0);
         result = 31 * result + (motDePasse != null ? motDePasse.hashCode() : 0);
-        result = 31 * result + idPersonne;
+        result = 31 * result + (personne != null ? personne.hashCode() : 0);
         return result;
     }
 }

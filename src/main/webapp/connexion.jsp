@@ -12,5 +12,20 @@
     </div>
     <button>Valider</button>
 </form>
+<script>
+    $(document).ready(()=>{
+        $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            url: '/tutoratApprentis/api/apprenti/1',
+            success: (response)=>{
+                console.log(response);
+            },
+            error: (response)=>{
+                console.log(response);
+            }
+        })
+    });
+</script>
 
 <%@ include file="footer.jsp"%>

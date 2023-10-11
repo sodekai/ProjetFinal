@@ -1,15 +1,14 @@
 package com.efrei.projetfinal.model;
 
-import com.efrei.projetfinal.*;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
-import jakarta.persistence.PersistenceContext;
 
 import java.util.List;
+import java.util.Map;
 
 @Stateless
 public class ApprentiSB {
@@ -19,10 +18,40 @@ public class ApprentiSB {
     @EJB
     private UtilisateurSB utilisateurSB;
 
-
-    public List<ApprentiEntity> get_all_apprentis(){
+    public List<ApprentiEntity> getAllApprentis(){
         Query q = em.createQuery("select a from ApprentiEntity a");
         return q.getResultList();
+    }
+
+    public ApprentiEntity getApprenti(int idApprenti){
+        ApprentiEntity apprentiEntity = (ApprentiEntity) em.createQuery(
+                    "select a from ApprentiEntity a where a.idApprenti=:idApprenti")
+                .setParameter("idApprenti", idApprenti)
+                .getSingleResult();
+        /*UtilisateurEntity utilisateurEntity = (UtilisateurEntity) em.createQuery(
+                        "select u from UtilisateurEntity u where u.idUtilisateur=:idUtilisateur")
+                .setParameter("idUtilisateur", apprentiEntity.getIdUtilisateur())
+                .getSingleResult();
+        PersonneEntity personneEntity = (PersonneEntity) em.createQuery(
+                        "select p from PersonneEntity p where p.idPersonne=:idPersonne")
+                .setParameter("idPersonne", utilisateurEntity.getIdPersonne())
+                .getSingleResult();
+        EntrepriseEntity entrepriseEntity = (EntrepriseEntity) em.createQuery(
+                        "select p from PersonneEntity p where p.idPersonne=:idPersonne")
+                .setParameter("idPersonne", apprentiEntity.getIdEntreprise())
+                .getSingleResult();
+
+        Entreprise entreprise = new Entreprise(apprentiEntity.getIdEntreprise(), entrepriseEntity.getRaisonSociale(), entrepriseEntity.getAdresse(), entrepriseEntity.getInformationsUtiles());
+
+        Apprenti apprenti = new Apprenti(
+                personneEntity.getNom(), personneEntity.getPrenom(), personneEntity.getAdresseElectronique(),
+                personneEntity.getTelephone(),
+                utilisateurEntity.getNomUtilisateur(), utilisateurEntity.getMotDePasse(),
+                apprentiEntity.getAnneeAcademique(), apprentiEntity.getMajeure(),
+                entreprise);
+
+        return apprenti.getInfos();*/
+        return apprentiEntity;
     }
 
     public void createApprenti(String nom, String prenom, String adresseElectronique, String telephone, String nomUtilisateur, String motDePasse, String anneeAcademique, String majeure, int idEntreprise){
