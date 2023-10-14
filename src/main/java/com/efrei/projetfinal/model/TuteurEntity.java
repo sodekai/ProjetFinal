@@ -26,7 +26,7 @@ public class TuteurEntity {
         return utilisateur;
     }
 
-    public void setIdUtilisateur(UtilisateurEntity utilisateur) {
+    public void setUtilisateur(UtilisateurEntity utilisateur) {
         this.utilisateur = utilisateur;
     }
     @Override

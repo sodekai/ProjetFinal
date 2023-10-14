@@ -87,15 +87,15 @@ public class ApprentiEntity {
         return entreprise;
     }
 
-    public void setEntreprise(EntrepriseEntity idEntreprise) {
-        this.entreprise = idEntreprise;
+    public void setEntreprise(EntrepriseEntity Entreprise) {
+        this.entreprise = Entreprise;
     }
 
     public UtilisateurEntity getUtilisateur() {
         return utilisateur;
     }
 
-    public void setIdUtilisateur(UtilisateurEntity utilisateur) {
+    public void setUtilisateur(UtilisateurEntity utilisateur) {
         this.utilisateur = utilisateur;
     }
 

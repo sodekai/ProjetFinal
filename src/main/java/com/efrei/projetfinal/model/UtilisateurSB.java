@@ -16,18 +16,29 @@ public class UtilisateurSB {
     @EJB
     private PersonneSB personneSB;
 
-    public void createUtilisateur(String nom, String prenom, String adresseElectronique, String telephone, String nomUtilisateur, String motDePasse) {
-        personneSB.createPersonne(nom, prenom, adresseElectronique, telephone);
-        Query qCreateUtilisateur = em.createNativeQuery(
-                "insert into UtilisateurEntity (nomUtilisateur, motDePasse) VALUES (:nomUtilisateur, :motDePasse)");
-        qCreateUtilisateur.setParameter("nomUtilisateur", nomUtilisateur);
-        qCreateUtilisateur.setParameter("motDePasse", motDePasse);
+    public UtilisateurEntity createUtilisateur(String nom, String prenom, String adresseElectronique, String telephone, String nomUtilisateur, String motDePasse) {
+        PersonneEntity createdPersonne = personneSB.createPersonne(nom, prenom, adresseElectronique, telephone);
+
+        UtilisateurEntity newUser = new UtilisateurEntity();
+        newUser.setNomUtilisateur(nomUtilisateur);
+        newUser.setMotDePasse(motDePasse);
+        newUser.setPersonne(createdPersonne);
+        em.persist(newUser);
+        em.flush();
+
+        return newUser;
     }
+
 
     public List<UtilisateurEntity> get_all_utilisateurs(){
         Query q = em.createQuery("select u from UtilisateurEntity u");
         return q.getResultList();
     }
 
-
+    public int getIdByUserName(String nomUtilisateur) {
+        Query q = em.createQuery("select u.idUtilisateur from UtilisateurEntity u where u.nomUtilisateur = :nomUtilisateur")
+                .setParameter("nomUtilisateur", nomUtilisateur);
+        return (int) q.getSingleResult();
+    }
 }
+

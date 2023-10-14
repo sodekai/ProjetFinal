@@ -59,7 +59,7 @@ public class MaitreApprentissageEntity {
         return personne;
     }
 
-    public void setPersonne(PersonneEntity idPersonne) {
+    public void setPersonne(PersonneEntity personne) {
         this.personne = personne;
     }
 

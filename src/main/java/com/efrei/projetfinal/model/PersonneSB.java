@@ -13,15 +13,20 @@ public class PersonneSB {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public void createPersonne(String nom, String prenom, String adresseElectronique, String telephone) {
-        Query qCreatePersonne = em.createNativeQuery(
-                        "insert into PersonneEntity (nom, prenom, adresseElectronique, telephone) VALUES (:nom, :prenom, :adresseElectronique, :telephone)")
-                .setParameter("nom", nom)
-                .setParameter("prenom", prenom)
-                .setParameter("adresseElectronique", adresseElectronique)
-                .setParameter("telephone", telephone);
+    public PersonneEntity createPersonne(String nom, String prenom, String adresseElectronique, String telephone) {
+        PersonneEntity newPersonne = new PersonneEntity();
+        newPersonne.setNom(nom);
+        newPersonne.setPrenom(prenom);
+        newPersonne.setAdresseElectronique(adresseElectronique);
+        newPersonne.setTelephone(telephone);
 
+        em.persist(newPersonne);
+        em.flush();
+
+        return newPersonne;
     }
+
+
 
 
 }
