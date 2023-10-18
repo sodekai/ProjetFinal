@@ -3,13 +3,16 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          version="5.0">
+
+    <!-- Config -->
     <jsp-config>
         <taglib>
-            <taglib-uri>http://java.sun.com/jstl/core</taglib-uri>
+            <taglib-uri>http://java.sun.com/jstl/core_rt</taglib-uri>
             <taglib-location>/WEB-INF/lib/jstl.jar</taglib-location>
         </taglib>
     </jsp-config>
 
+    <!-- Servlets -->
     <servlet>
         <servlet-name>IndexServlet</servlet-name>
         <servlet-class>com.efrei.projetfinal.IndexServlet</servlet-class>
@@ -46,6 +49,38 @@
         <servlet-name>ApprentiInfoServlet</servlet-name>
         <url-pattern>/apprenti-infos</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>default</servlet-name>
+        <servlet-class>io.undertow.servlet.handlers.DefaultServlet</servlet-class>
+        <init-param>
+            <param-name>allowed-extensions</param-name>
+            <param-value>xml</param-value>
+        </init-param>
+        <init-param>
+            <param-name>directory-listing</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>resolve-against-context-root</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/assets/css/*</url-pattern>
+        <url-pattern>/assets/fonts/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- Filtres -->
+    <!--<filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>com.efrei.projetfinal.AuthentificationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>-->
 
     <filter>
         <filter-name>CORSFilter</filter-name>

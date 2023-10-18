@@ -12,7 +12,6 @@ import java.io.IOException;
 public class ApprentiInfoServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("ok");
-        request.getRequestDispatcher("/apprenti_infos.html").forward(request, response);
+        request.getRequestDispatcher("/apprenti_infos.jsp").forward(request, response);
     };
 }

@@ -33,7 +33,7 @@ public class ConnexionServlet extends HttpServlet {
             String user = nomUtilisateur;
             session.setAttribute("user", user);
             request.setAttribute("user_session", user);
-            request.getRequestDispatcher("/hello_user.jsp").forward(request, response);
+            request.getRequestDispatcher("/liste_apprentis.jsp").forward(request, response);
         }
         request.getRequestDispatcher("/connexion.jsp").forward(request, response);
 

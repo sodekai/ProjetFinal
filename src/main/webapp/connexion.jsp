@@ -1,19 +1,23 @@
 <%@ include file="header.jsp"%>
 
 <h1>Connexion</h1>
-<form action="connexion" method="post" class="container bordered">
-    <div>
-        <label for="nomUtilisateur">Login</label>
-        <input type="text" name="nomUtilisateur" id="nomUtilisateur"/>
+<form action="connexion" method="post" class="container card bordered">
+    <table class="tutorat-table-form">
+        <tr>
+            <td><label for="nomUtilisateur">Login</label></td>
+            <td><input type="text" name="nomUtilisateur" id="nomUtilisateur"/></td>
+        </tr>
+        <tr>
+            <td><label for="motDePasse">Password</label></td>
+            <td><input type="password" name="motDePasse" id="motDePasse"/></td>
+        </tr>
+    </table>
+    <div class="container-button">
+        <button>Valider</button>
     </div>
-    <div>
-        <label for="motDePasse">Password</label>
-        <input type="password" name="motDePasse" id="motDePasse"/>
-    </div>
-    <button>Valider</button>
 </form>
 <script>
-    $(document).ready(()=>{
+    /*$(document).ready(()=>{
         $.ajax({
             type: 'GET',
             dataType: 'json',
@@ -25,7 +29,7 @@
                 console.log(response);
             }
         })
-    });
+    });*/
 </script>
 
 <%@ include file="footer.jsp"%>
