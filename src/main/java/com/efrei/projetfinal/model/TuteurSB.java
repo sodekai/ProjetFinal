@@ -2,10 +2,7 @@ package com.efrei.projetfinal.model;
 
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.Query;
+import jakarta.persistence.*;
 
 import java.util.List;
 
@@ -15,21 +12,10 @@ public class TuteurSB {
     EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
     EntityManager em = entityManagerFactory.createEntityManager();
 
+    @PersistenceContext
+    private EntityManager entityManager;
     @EJB
     private UtilisateurSB utilisateurSB;
-
-    public List<TuteurEntity> getAllTuteurs() {
-        Query q = em.createQuery("select t from TuteurEntity t");
-        return q.getResultList();
-    }
-
-    public TuteurEntity getTuteur(int idTuteur) {
-        TuteurEntity tuteurEntity = (TuteurEntity) em.createQuery(
-                        "select t from TuteurEntity t where t.idTuteur = :idTuteur")
-                .setParameter("idTuteur", idTuteur)
-                .getSingleResult();
-        return tuteurEntity;
-    }
 
     public void createTuteur(String nom, String prenom, String adresseElectronique, String telephone, String nomUtilisateur, String motDePasse) {
         // Create an utilisateur and get the UtilisateurEntity instance
@@ -43,5 +29,29 @@ public class TuteurSB {
         em.flush();
     }
 
+    public List<TuteurEntity> getAllTuteurs() {
+        TypedQuery<TuteurEntity> query = em.createNamedQuery("TuteurEntity.findAll", TuteurEntity.class);
+        return query.getResultList();
+    }
 
+    public TuteurEntity getTuteur(int idTuteur) {
+        TypedQuery<TuteurEntity> query = em.createNamedQuery("TuteurEntity.findById", TuteurEntity.class);
+        query.setParameter("idTuteur", idTuteur);
+        return query.getSingleResult();
+    }
+
+    public void updateTuteur(TuteurEntity tuteur) {
+        if (tuteur != null && tuteur.getIdTuteur() > 0) {
+            Query query = em.createNamedQuery("TuteurEntity.updateUtilisateur");
+            query.setParameter("utilisateur", tuteur.getUtilisateur());
+            query.setParameter("idTuteur", tuteur.getIdTuteur());
+            query.executeUpdate();
+        }
+    }
+
+    public List<ApprentiEntity> getAllTuteurApprentis(int idTuteur) {
+        TypedQuery<ApprentiEntity> query = em.createNamedQuery("TuteurEntity.findAllApprentisByTuteurId", ApprentiEntity.class);
+        query.setParameter("idTuteur", idTuteur);
+        return query.getResultList();
+    }
 }

@@ -6,6 +6,24 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "visite", schema = "tutorat", catalog = "")
+@NamedQueries({
+        @NamedQuery(
+                name = "VisiteEntity.findAll",
+                query = "SELECT v FROM VisiteEntity v"
+        ),
+        @NamedQuery(
+                name = "VisiteEntity.findById",
+                query = "SELECT v FROM VisiteEntity v WHERE v.idVisite = :idVisite"
+        ),
+        @NamedQuery(
+                name = "VisiteEntity.update",
+                query = "UPDATE VisiteEntity v SET v.dateVisite = :dateVisite, v.format = :format, v.compteRendu = :compteRendu, v.idApprenti = :idApprenti WHERE v.idVisite = :idVisite"
+        ),
+        @NamedQuery(
+                name = "VisiteEntity.delete",
+                query = "DELETE FROM VisiteEntity v WHERE v.idVisite = :idVisite"
+        )
+})
 public class VisiteEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

@@ -29,16 +29,24 @@ public class UtilisateurSB {
         return newUser;
     }
 
-
-    public List<UtilisateurEntity> get_all_utilisateurs(){
-        Query q = em.createQuery("select u from UtilisateurEntity u");
-        return q.getResultList();
+    public List<UtilisateurEntity> get_all_utilisateurs() {
+        TypedQuery<UtilisateurEntity> query = em.createNamedQuery("UtilisateurEntity.findAll", UtilisateurEntity.class);
+        return query.getResultList();
     }
 
-    public int getIdByUserName(String nomUtilisateur) {
-        Query q = em.createQuery("select u.idUtilisateur from UtilisateurEntity u where u.nomUtilisateur = :nomUtilisateur")
-                .setParameter("nomUtilisateur", nomUtilisateur);
-        return (int) q.getSingleResult();
+    public UtilisateurEntity getUtilisateurById(int idUtilisateur) {
+        TypedQuery<UtilisateurEntity> query = em.createNamedQuery("UtilisateurEntity.findById", UtilisateurEntity.class);
+        query.setParameter("idUtilisateur", idUtilisateur);
+        return query.getSingleResult();
+    }
+
+    public void updateUtilisateur(UtilisateurEntity utilisateur) {
+        Query query = em.createNamedQuery("UtilisateurEntity.updateDetailsById");
+        query.setParameter("idUtilisateur", utilisateur.getIdUtilisateur());
+        query.setParameter("nomUtilisateur", utilisateur.getNomUtilisateur());
+        query.setParameter("motDePasse", utilisateur.getMotDePasse());
+
+        query.executeUpdate();
     }
 }
 

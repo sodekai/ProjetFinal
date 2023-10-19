@@ -3,6 +3,20 @@ package com.efrei.projetfinal.model;
 import jakarta.persistence.*;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(
+                name = "MaitreApprentissageEntity.findAll",
+                query = "SELECT m FROM MaitreApprentissageEntity m"
+        ),
+        @NamedQuery(
+                name = "MaitreApprentissageEntity.findById",
+                query = "SELECT m FROM MaitreApprentissageEntity m WHERE m.idMaitreApprentissage = :idMaitreApprentissage"
+        ),
+        @NamedQuery(
+                name = "MaitreApprentissageEntity.update",
+                query = "UPDATE MaitreApprentissageEntity m SET m.remarque = :remarque, m.poste = :poste, m.entreprise = :entreprise, m.personne = :personne WHERE m.idMaitreApprentissage = :idMaitreApprentissage"
+        )
+})
 @Table(name = "maitre_apprentissage", schema = "tutorat", catalog = "")
 public class MaitreApprentissageEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)

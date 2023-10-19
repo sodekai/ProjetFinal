@@ -4,6 +4,20 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "entreprise", schema = "tutorat", catalog = "")
+@NamedQueries({
+        @NamedQuery(
+                name = "EntrepriseEntity.findAll",
+                query = "SELECT e FROM EntrepriseEntity e"
+        ),
+        @NamedQuery(
+                name = "EntrepriseEntity.findById",
+                query = "SELECT e FROM EntrepriseEntity e WHERE e.idEntreprise = :idEntreprise"
+        ),
+        @NamedQuery(
+                name = "EntrepriseEntity.delete",
+                query = "DELETE FROM EntrepriseEntity e WHERE e.idEntreprise = :idEntreprise"
+        )
+})
 public class EntrepriseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

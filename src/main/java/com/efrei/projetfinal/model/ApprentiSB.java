@@ -2,10 +2,7 @@ package com.efrei.projetfinal.model;
 
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.Query;
+import jakarta.persistence.*;
 
 import java.util.List;
 import java.util.Map;
@@ -15,21 +12,20 @@ public class ApprentiSB {
     EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
     EntityManager em = entityManagerFactory.createEntityManager();
 
+    @PersistenceContext
+    private EntityManager entityManager;
     @EJB
     private UtilisateurSB utilisateurSB;
 
     public List<ApprentiEntity> getAllApprentis(){
-        Query q = em.createQuery("select a from ApprentiEntity a");
-        return q.getResultList();
+        TypedQuery<ApprentiEntity> query = em.createNamedQuery("ApprentiEntity.findAll", ApprentiEntity.class);
+        return query.getResultList();
     }
 
     public ApprentiEntity getApprenti(int idApprenti){
-        ApprentiEntity apprentiEntity = (ApprentiEntity) em.createQuery(
-                    "select a from ApprentiEntity a where a.idApprenti=:idApprenti")
-                .setParameter("idApprenti", idApprenti)
-                .getSingleResult();
-
-        return apprentiEntity;
+        TypedQuery<ApprentiEntity> query = em.createNamedQuery("ApprentiEntity.findById", ApprentiEntity.class);
+        query.setParameter("idApprenti", idApprenti);
+        return query.getSingleResult();
     }
 
     public void createApprenti(String nom, String prenom, String adresseElectronique, String telephone, String nomUtilisateur, String motDePasse, String anneeAcademique, String majeure) {
@@ -42,6 +38,22 @@ public class ApprentiSB {
 
         em.persist(newApprenti);
         em.flush();
+    }
+
+    public void updateApprenti(ApprentiEntity apprenti) {
+        Query query = em.createNamedQuery("ApprentiEntity.update");
+        query.setParameter("anneeAcademique", apprenti.getAnneeAcademique());
+        query.setParameter("majeure", apprenti.getMajeure());
+        query.setParameter("utilisateur", apprenti.getUtilisateur());
+        query.setParameter("idApprenti", apprenti.getIdApprenti());
+        query.executeUpdate();
+    }
+
+
+    public List<VisiteEntity> getAllApprentiVisites(int idApprenti) {
+        TypedQuery<VisiteEntity> query = em.createNamedQuery("ApprentiEntity.findAllVisitesByApprentiId", VisiteEntity.class);
+        query.setParameter("idApprenti", idApprenti);
+        return query.getResultList();
     }
 
 }

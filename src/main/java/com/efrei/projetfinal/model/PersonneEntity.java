@@ -4,6 +4,14 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "personne", schema = "tutorat", catalog = "")
+@NamedQueries({
+        @NamedQuery(name = "PersonneEntity.findAll", query = "SELECT p FROM PersonneEntity p"),
+        @NamedQuery(name = "PersonneEntity.findById", query = "SELECT p FROM PersonneEntity p WHERE p.idPersonne = :idPersonne"),
+        @NamedQuery(
+                name = "PersonneEntity.updateDetailsById",
+                query = "UPDATE PersonneEntity p SET p.nom = :nom, p.prenom = :prenom, p.adresseElectronique = :adresseElectronique, p.telephone = :telephone WHERE p.idPersonne = :idPersonne"
+        )
+})
 public class PersonneEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
