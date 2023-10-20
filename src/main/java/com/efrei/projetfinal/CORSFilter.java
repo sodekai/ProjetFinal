@@ -1,5 +1,6 @@
 package com.efrei.projetfinal;
 
+import com.efrei.projetfinal.model.UtilisateurEntity;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,10 +31,7 @@ public class CORSFilter implements Filter {
         else {
             // authentification filter
             HttpSession session = httpRequest.getSession();
-            String user = (String) session.getAttribute("user");
-            req.setAttribute("user_session", user);
-            System.out.println("user_session : "+ req.getAttribute("user_session"));
-
+            UtilisateurEntity user = (UtilisateurEntity) session.getAttribute("user");
             if (user == null) {
                 System.out.println("L'utilisateur n'est pas authentifié.");
                 req.getRequestDispatcher("/connexion.jsp").forward(req, res);

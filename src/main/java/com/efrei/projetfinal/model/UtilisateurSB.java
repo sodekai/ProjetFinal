@@ -34,6 +34,13 @@ public class UtilisateurSB {
         return query.getResultList();
     }
 
+    public UtilisateurEntity getUtilisateurByIdentifiants(String nomUtilisateur, String motDePasse) {
+        TypedQuery<UtilisateurEntity> query = em.createNamedQuery("UtilisateurEntity.findByIdentifiers", UtilisateurEntity.class);
+        query.setParameter("nomUtilisateur", nomUtilisateur);
+        query.setParameter("motDePasse", motDePasse);
+        return query.getSingleResult();
+    }
+
     public UtilisateurEntity getUtilisateurById(int idUtilisateur) {
         TypedQuery<UtilisateurEntity> query = em.createNamedQuery("UtilisateurEntity.findById", UtilisateurEntity.class);
         query.setParameter("idUtilisateur", idUtilisateur);

@@ -1,6 +1,6 @@
 <%@ include file="header.jsp"%>
 
-Bonjour ${user_session}!
-<a href="apprenti-infos">Infos apprenti 1</a>
+
+Bonjour visiteur ${sessionScope.user.personne.prenom} ${sessionScope.user.personne.nom} !
 
 <%@ include file="footer.jsp"%>

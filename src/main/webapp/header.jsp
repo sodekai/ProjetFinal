@@ -15,9 +15,9 @@
 <div id="header">
     <div id="menu">
         <c:choose>
-            <c:when test="${user_session != null}">
-                Bonjour ${user_session}&nbsp;|&nbsp;
-                <a href="">Se déconnecter</a>
+            <c:when test="${sessionScope.user != null}">
+                Bonjour ${sessionScope.user.personne.prenom}&nbsp;${sessionScope.user.personne.nom}&nbsp;|&nbsp;
+                <a href="deconnexion">Se déconnecter</a>
             </c:when>
             <c:otherwise>
                 <div>Non connecté</div>

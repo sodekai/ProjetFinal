@@ -3,9 +3,10 @@ package com.efrei.projetfinal;
 import java.io.*;
 import java.util.Objects;
 
-import com.efrei.projetfinal.model.ApprentiSB;
-import com.efrei.projetfinal.model.PersonneSB;
+import com.efrei.projetfinal.model.*;
 import jakarta.ejb.EJB;
+import jakarta.ejb.EJBException;
+import jakarta.persistence.NoResultException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -13,6 +14,10 @@ import jakarta.servlet.annotation.*;
 @WebServlet(name = "ConnexionServlet", value = "/connexion")
 public class ConnexionServlet extends HttpServlet {
 
+    @EJB
+    private UtilisateurSB utilisateurSB;
+    @EJB
+    private ApprentiSB apprentiSB;
 
     public ConnexionServlet() {
         super();
@@ -28,14 +33,22 @@ public class ConnexionServlet extends HttpServlet {
         String motDePasse = request.getParameter("motDePasse");
 
         HttpSession session = request.getSession();
+        UtilisateurEntity utilisateurEntity;
+        try {
+            utilisateurEntity = utilisateurSB.getUtilisateurByIdentifiants(nomUtilisateur, motDePasse);
+        }
+        catch(EJBException e){
+            request.setAttribute("message_error", "utilisateur non trouvé");
+            utilisateurEntity = null;
+        }
 
-        if(nomUtilisateur.equals("Sophie") && motDePasse.equals("root")) {
-            String user = nomUtilisateur;
-            session.setAttribute("user", user);
-            request.setAttribute("user_session", user);
-            request.getRequestDispatcher("/liste_apprentis.jsp").forward(request, response);
+        if(utilisateurEntity != null) {
+            session.setAttribute("user", utilisateurEntity);
+            String home_page = Tutorat_utils.get_home_page(utilisateurEntity.getRoleUtilisateur());
+            request.getRequestDispatcher(home_page).forward(request, response);
         }
         request.getRequestDispatcher("/connexion.jsp").forward(request, response);
+
 
     }
 }

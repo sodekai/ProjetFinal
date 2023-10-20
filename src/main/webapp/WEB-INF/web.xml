@@ -11,17 +11,20 @@
             <taglib-location>/WEB-INF/lib/jstl.jar</taglib-location>
         </taglib>
     </jsp-config>
+    <welcome-file-list>
+        <welcome-file>com.efrei.projetfinal.IndexServlet</welcome-file>
+    </welcome-file-list>
 
     <!-- Servlets -->
-    <servlet>
+    <!--<servlet>
         <servlet-name>IndexServlet</servlet-name>
-        <servlet-class>com.efrei.projetfinal.IndexServlet</servlet-class>
+        <servlet-class></servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>IndexServlet</servlet-name>
         <url-pattern>/</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 
     <servlet>
         <servlet-name>ConnexionServlet</servlet-name>

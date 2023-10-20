@@ -1,4 +1,5 @@
 package com.efrei.projetfinal;
+import com.efrei.projetfinal.model.UtilisateurEntity;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -12,7 +13,16 @@ import java.util.Arrays;
 @WebServlet(name = "IndexServlet", value="/", loadOnStartup = 1)
 public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/accueil.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        UtilisateurEntity user = (UtilisateurEntity) session.getAttribute("user");
+        if(user != null){
+            String home_page = Tutorat_utils.get_home_page(user.getRoleUtilisateur());
+            request.getRequestDispatcher(home_page).forward(request, response);
+        } else {
+            request.getRequestDispatcher("/accueil.jsp").forward(request, response);
+        }
+
+        //request.getRequestDispatcher("/accueil.jsp").forward(request, response);
         /*HttpSession session = request.getSession();
         String user = (String) session.getAttribute("user");
         String requestURI = request.getRequestURI();

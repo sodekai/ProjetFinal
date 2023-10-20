@@ -1,5 +1,5 @@
 <%@ include file="header.jsp"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8;" pageEncoding="UTF-8" %>
 <h1>Connexion</h1>
 <form action="connexion" method="post" class="container card bordered">
     <table class="tutorat-table-form">
@@ -15,6 +15,11 @@
     <div class="container-button">
         <button>Valider</button>
     </div>
+    <c:choose>
+        <c:when test="${message_error != null}">
+            ${message_error}
+        </c:when>
+    </c:choose>
 </form>
 <script>
     /*$(document).ready(()=>{
