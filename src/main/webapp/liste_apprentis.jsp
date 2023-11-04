@@ -1,34 +1,28 @@
 <%@ include file="header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8;" pageEncoding="UTF-8" %>
 
-<h1>Liste des apprentis</h1>
-<div class="container card bordered" id="container-liste_apprentis">
-    <table class="tutorat-table tutorat-table-liste">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>MINOS</td>
-                <td>Sophie</td>
-                <td><a href="apprenti-infos">Modifier</a></td>
-            </tr>
-            <tr>
-                <td>MINOS</td>
-                <td>Sophie</td>
-                <td><a href="apprenti-infos">Modifier</a></td>
-            </tr>
-            <tr>
-                <td>MINOS</td>
-                <td>Sophie</td>
-                <td><a href="apprenti-infos">Modifier</a></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
+<head>
+    <title>Liste des Apprentis</title>
+</head>
+<body>
+<h1>Liste des Apprentis</h1>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Année Académique</th>
+        <th>Majeure</th>
+    </tr>
+    <c:forEach var="apprenti" items="${apprentis}">
+        <tr>
+            <td>${apprenti.idApprenti}</td>
+            <td>${apprenti.utilisateur.nom}</td>
+            <td>${apprenti.utilisateur.prenom}</td>
+            <td>${apprenti.anneeAcademique}</td>
+            <td>${apprenti.majeure}</td>
+        </tr>
+    </c:forEach>
+</table>
+</body>
 <%@ include file="footer.jsp"%>
