@@ -31,6 +31,12 @@ public class VisiteSB {
         return query.getSingleResult();
     }
 
+    public VisiteEntity getVisiteByIdApprenti(int idApprenti) {
+        TypedQuery<VisiteEntity> query = em.createNamedQuery("VisiteEntity.findByIdApprenti", VisiteEntity.class);
+        query.setParameter("idApprenti", idApprenti);
+        return query.getSingleResult();
+    }
+
     public List<VisiteEntity> getAllVisites() {
         TypedQuery<VisiteEntity> query = em.createNamedQuery("VisiteEntity.findAll", VisiteEntity.class);
         return query.getResultList();

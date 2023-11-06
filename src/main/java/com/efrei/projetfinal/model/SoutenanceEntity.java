@@ -6,6 +6,16 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "soutenance", schema = "tutorat", catalog = "")
+@NamedQueries({
+        @NamedQuery(
+                name = "SoutenanceEntity.findAll",
+                query = "SELECT s FROM SoutenanceEntity s"
+        ),
+        @NamedQuery(
+                name = "SoutenanceEntity.findById",
+                query = "SELECT s FROM SoutenanceEntity s WHERE s.idSoutenance = :idSoutenance"
+        )
+})
 public class SoutenanceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

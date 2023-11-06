@@ -16,6 +16,10 @@ import java.sql.Date;
                 query = "SELECT v FROM VisiteEntity v WHERE v.idVisite = :idVisite"
         ),
         @NamedQuery(
+                name = "VisiteEntity.findByIdApprenti",
+                query = "SELECT v FROM VisiteEntity v WHERE v.idApprenti = :idApprenti"
+        ),
+        @NamedQuery(
                 name = "VisiteEntity.update",
                 query = "UPDATE VisiteEntity v SET v.dateVisite = :dateVisite, v.format = :format, v.compteRendu = :compteRendu, v.idApprenti = :idApprenti WHERE v.idVisite = :idVisite"
         ),

@@ -1,5 +1,9 @@
 package com.efrei.projetfinal;
+import com.efrei.projetfinal.model.ApprentiEntity;
+import com.efrei.projetfinal.model.ApprentiSB;
 import com.efrei.projetfinal.model.UtilisateurEntity;
+import jakarta.ejb.EJB;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -8,18 +12,27 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.util.Arrays;
 
-@WebServlet(name = "IndexServlet", value="/", loadOnStartup = 1)
+@WebServlet(name = "IndexServlet", value="/")
 public class IndexServlet extends HttpServlet {
+    private Tutorat_utils tutorat_utils;
+    @EJB
+    private ApprentiSB apprentiSB;
+    public IndexServlet() {
+        super();
+    }
+
+    public void init() throws ServletException {
+        tutorat_utils = new Tutorat_utils(apprentiSB);
+    }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         UtilisateurEntity user = (UtilisateurEntity) session.getAttribute("user");
         if(user != null){
-            String home_page = Tutorat_utils.get_home_page(user.getRoleUtilisateur());
-            request.getRequestDispatcher(home_page).forward(request, response);
+            tutorat_utils.dispatch_to_home_page(user, request, response);
         } else {
-            request.getRequestDispatcher("/accueil.jsp").forward(request, response);
+            //request.getRequestDispatcher("/accueil.jsp").forward(request, response);
+            request.getRequestDispatcher("/connexion.jsp").forward(request, response);
         }
 
         //request.getRequestDispatcher("/accueil.jsp").forward(request, response);

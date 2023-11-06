@@ -39,20 +39,59 @@ body {
 #container-form-apprentis_infos, #container-liste_apprentis {
     max-width: 600px;
 }
+.bubbles-container {
+    display: flex;
+    align-items: start;
+    gap: 20px;
+    width: 100%;
+    flex-wrap: wrap;
+}
 
 /* divers */
-.card {
+.card, .bubble-infos {
     background-color: aliceblue;
 }
-.bordered {
+.bordered, .bordered-thin {
     border: 3px solid #335556;
     border-radius: 5px;
+}
+.bordered-thin {
+    border-width: 1px;
+}
+.bubble-infos {
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0;
+}
+.bubble-infos-dark {
+    background-color: #5990934F;
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 10px 10px 0 10px;
+}
+.bubble-infos-small {
+    flex: 0.5;
+    max-width: 50%;
+}
+.bubble-infos-large {
+    flex: 100%;
+    max-width: 100%;
 }
 
 /* texte */
 h1 {
     text-align: center;
     font-weight: 200;
+}
+h3 {
+    text-align: center;
+    font-weight: 300;
+    margin: 5px 0;
+}
+h4 {
+    text-align: center;
+    font-weight: 200;
+    margin: 5px 0;
 }
 a {
     color: #335556;
@@ -88,6 +127,12 @@ table.tutorat-table-liste {
     border-collapse: collapse;
 }
 
+.tutorat-table-label {
+    font-weight: 200;
+    color: #335556;
+    width: 40%;
+}
+
 /* form */
 input[type='text'], input[type='password'], select {
     border: 3px solid cadetblue;
@@ -116,4 +161,5 @@ button {
 button:hover {
     background-color: #335556;
 }
+
 

@@ -24,25 +24,19 @@ public class CORSFilter implements Filter {
         httpResponse.setHeader("Access-Control-Max-Age", "3600");
         httpResponse.setHeader("Access-Control-Allow-Headers", "x-requested-with, Content-Type");
 
+        // authentification filter
+        HttpSession session = httpRequest.getSession();
+        UtilisateurEntity user = (UtilisateurEntity) session.getAttribute("user");
+        System.out.println("req cors " +req);
+
         String url = httpRequest.getRequestURI();
-        if (url != null && (url.startsWith(httpRequest.getContextPath() + "/assets/") || url.endsWith("/connexion"))) {
+        if ((url != null && (url.startsWith(httpRequest.getContextPath() + "/assets/") || url.endsWith("/connexion") || (user != null)))) {
             chain.doFilter(req, res);
         }
         else {
-            // authentification filter
-            HttpSession session = httpRequest.getSession();
-            UtilisateurEntity user = (UtilisateurEntity) session.getAttribute("user");
-            if (user == null) {
-                System.out.println("L'utilisateur n'est pas authentifié.");
-                req.getRequestDispatcher("/connexion.jsp").forward(req, res);
-            } else {
-                System.out.println("L'utilisateur est authentifié : " + user);
-                chain.doFilter(req, res);
-            }
+            System.out.println("Page de connexion");
+            req.getRequestDispatcher("/connexion.jsp").forward(req, res);
         }
-
-
-
     }
     @Override
     public void init(FilterConfig filterConfig) {

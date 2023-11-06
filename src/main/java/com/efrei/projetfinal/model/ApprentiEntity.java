@@ -18,6 +18,10 @@ import jakarta.persistence.*;
                 query = "SELECT v FROM VisiteEntity v WHERE v.idApprenti = :idApprenti"
         ),
         @NamedQuery(
+                name = "ApprentiEntity.findByUtilisateurId",
+                query = "SELECT a FROM ApprentiEntity a WHERE a.utilisateur.idUtilisateur = :idUtilisateur"
+        ),
+        @NamedQuery(
                 name = "ApprentiEntity.update",
                 query = "UPDATE ApprentiEntity a SET a.anneeAcademique = :anneeAcademique, a.majeure = :majeure, a.utilisateur = :utilisateur WHERE a.idApprenti = :idApprenti"
         )
@@ -33,6 +37,10 @@ public class ApprentiEntity {
     @Basic
     @Column(name = "majeure", nullable = true, length = 150)
     private String majeure;
+
+    @Basic
+    @Column(name = "est_archive", nullable = false, length = 150)
+    private boolean est_archive;
     /*
     @Basic
     @Column(name = "id_tuteur", nullable = true)
@@ -61,6 +69,10 @@ public class ApprentiEntity {
     @JoinColumn(name = "id_utilisateur")
     private UtilisateurEntity utilisateur;
 
+    @OneToOne
+    @JoinColumn(name = "id_mission")
+    private MissionEntity mission;
+
     public int getIdApprenti() {
         return idApprenti;
     }
@@ -83,6 +95,14 @@ public class ApprentiEntity {
 
     public void setMajeure(String majeure) {
         this.majeure = majeure;
+    }
+
+    public MissionEntity getMission() {
+        return mission;
+    }
+
+    public void setMission(MissionEntity mission) {
+        this.mission = mission;
     }
 
     public TuteurEntity getTuteur() {
@@ -126,6 +146,7 @@ public class ApprentiEntity {
 
         if (idApprenti != that.idApprenti) return false;
         if (utilisateur != that.utilisateur) return false;
+        if (est_archive != that.est_archive) return false;
         if (anneeAcademique != null ? !anneeAcademique.equals(that.anneeAcademique) : that.anneeAcademique != null)
             return false;
         if (majeure != null ? !majeure.equals(that.majeure) : that.majeure != null) return false;
@@ -133,7 +154,7 @@ public class ApprentiEntity {
         if (maitreApprentissage != null ? !maitreApprentissage.equals(that.maitreApprentissage) : that.maitreApprentissage != null)
             return false;
         if (entreprise != null ? !entreprise.equals(that.entreprise) : that.entreprise != null) return false;
-
+        if (mission != null ? !mission.equals(that.mission) : that.mission != null) return false;
         return true;
     }
 
@@ -143,9 +164,11 @@ public class ApprentiEntity {
         result = 31 * result + (anneeAcademique != null ? anneeAcademique.hashCode() : 0);
         result = 31 * result + (majeure != null ? majeure.hashCode() : 0);
         result = 31 * result + (tuteur != null ? tuteur.hashCode() : 0);
+        result = 31 * result + (est_archive ? 1 : 0);
         result = 31 * result + (maitreApprentissage != null ? maitreApprentissage.hashCode() : 0);
         result = 31 * result + (entreprise != null ? entreprise.hashCode() : 0);
         result = 31 * result + (utilisateur != null ? utilisateur.hashCode() : 0);
+        result = 31 * result + (mission != null ? mission.hashCode() : 0);
         return result;
     }
 }

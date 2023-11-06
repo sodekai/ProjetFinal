@@ -4,6 +4,16 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "memoire", schema = "tutorat", catalog = "")
+@NamedQueries({
+        @NamedQuery(
+                name = "MemoireEntity.findAll",
+                query = "SELECT m FROM MemoireEntity m"
+        ),
+        @NamedQuery(
+                name = "MemoireEntity.findById",
+                query = "SELECT m FROM MemoireEntity m WHERE m.idMemoire = :idMemoire"
+        )
+})
 public class MemoireEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

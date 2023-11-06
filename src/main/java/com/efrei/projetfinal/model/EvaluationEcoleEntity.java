@@ -4,6 +4,16 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "evaluation_ecole", schema = "tutorat", catalog = "")
+@NamedQueries({
+        @NamedQuery(
+                name = "EvaluationEcoleEntity.findAll",
+                query = "SELECT e FROM EvaluationEcoleEntity e"
+        ),
+        @NamedQuery(
+                name = "EvaluationEcoleEntity.findByIdApprenti",
+                query = "SELECT e FROM EvaluationEcoleEntity e WHERE e.apprenti.idApprenti = :idApprenti"
+        )
+})
 public class EvaluationEcoleEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
