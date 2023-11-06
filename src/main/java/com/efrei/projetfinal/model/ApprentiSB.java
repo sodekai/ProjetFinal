@@ -63,4 +63,15 @@ public class ApprentiSB {
     }
 
 
+    public List<FeedbackApprentiEntity> getAllApprentiFeedbacks(int idApprenti) {
+        TypedQuery<FeedbackApprentiEntity> query = em.createNamedQuery("ApprentiEntity.findAllFeedbacksByApprentiId", FeedbackApprentiEntity.class);
+        query.setParameter("idApprenti", idApprenti);
+        return query.getResultList();
+    }
+
+    public List<EvaluationEcoleEntity> getAllApprentiEvaluationsEcole(int idApprenti) {
+        TypedQuery<EvaluationEcoleEntity> query = em.createNamedQuery("ApprentiEntity.findAllEvaluationsEcoleByApprentiId", EvaluationEcoleEntity.class);
+        query.setParameter("idApprenti", idApprenti);
+        return query.getResultList();
+    }
 }

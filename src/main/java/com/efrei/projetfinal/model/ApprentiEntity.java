@@ -15,7 +15,15 @@ import jakarta.persistence.*;
         ),
         @NamedQuery(
                 name = "ApprentiEntity.findAllVisitesByApprentiId",
-                query = "SELECT v FROM VisiteEntity v WHERE v.idApprenti = :idApprenti"
+                query = "SELECT v FROM VisiteEntity v WHERE v.apprenti.idApprenti = :idApprenti"
+        ),
+        @NamedQuery(
+                name = "ApprentiEntity.findAllFeedbacksByApprentiId",
+                query = "SELECT f FROM FeedbackApprentiEntity f WHERE f.apprenti.idApprenti = :idApprenti"
+        ),
+        @NamedQuery(
+                name = "ApprentiEntity.findAllEvaluationsEcoleByApprentiId",
+                query = "SELECT e FROM EvaluationEcoleEntity e WHERE e.apprenti.idApprenti = :idApprenti"
         ),
         @NamedQuery(
                 name = "ApprentiEntity.findByUtilisateurId",

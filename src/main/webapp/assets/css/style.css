@@ -42,7 +42,8 @@ body {
 .bubbles-container {
     display: flex;
     align-items: start;
-    gap: 20px;
+    justify-content: space-between;
+    gap: 10px;
     width: 100%;
     flex-wrap: wrap;
 }
@@ -70,7 +71,7 @@ body {
     padding: 10px 10px 0 10px;
 }
 .bubble-infos-small {
-    flex: 0.5;
+    width: 46%;
     max-width: 50%;
 }
 .bubble-infos-large {
@@ -102,7 +103,7 @@ table.tutorat-table {
     padding: 10px;
     width: 100% !important;
 }
-table.tutorat-table tr td {
+table.tutorat-table tr td, table.tutorat-table tr th {
     padding: 10px;
 }
 table.tutorat-table-liste thead tr {

@@ -17,11 +17,11 @@ import java.sql.Date;
         ),
         @NamedQuery(
                 name = "VisiteEntity.findByIdApprenti",
-                query = "SELECT v FROM VisiteEntity v WHERE v.idApprenti = :idApprenti"
+                query = "SELECT v FROM VisiteEntity v WHERE v.apprenti.idApprenti = :idApprenti"
         ),
         @NamedQuery(
                 name = "VisiteEntity.update",
-                query = "UPDATE VisiteEntity v SET v.dateVisite = :dateVisite, v.format = :format, v.compteRendu = :compteRendu, v.idApprenti = :idApprenti WHERE v.idVisite = :idVisite"
+                query = "UPDATE VisiteEntity v SET v.dateVisite = :dateVisite, v.format = :format, v.compteRendu = :compteRendu, v.apprenti.idApprenti = :idApprenti WHERE v.idVisite = :idVisite"
         ),
         @NamedQuery(
                 name = "VisiteEntity.delete",
@@ -42,9 +42,10 @@ public class VisiteEntity {
     @Basic
     @Column(name = "compte_rendu", nullable = true, length = 150)
     private String compteRendu;
-    @Basic
-    @Column(name = "id_apprenti", nullable = false)
-    private int idApprenti;
+
+    @OneToOne
+    @JoinColumn(name = "id_apprenti", nullable = false)
+    private ApprentiEntity apprenti;
 
     public int getIdVisite() {
         return idVisite;
@@ -78,12 +79,12 @@ public class VisiteEntity {
         this.compteRendu = compteRendu;
     }
 
-    public int getIdApprenti() {
-        return idApprenti;
+    public ApprentiEntity getApprenti() {
+        return apprenti;
     }
 
-    public void setIdApprenti(int idApprenti) {
-        this.idApprenti = idApprenti;
+    public void setApprenti(ApprentiEntity apprenti) {
+        this.apprenti = apprenti;
     }
 
     @Override
@@ -94,7 +95,7 @@ public class VisiteEntity {
         VisiteEntity that = (VisiteEntity) o;
 
         if (idVisite != that.idVisite) return false;
-        if (idApprenti != that.idApprenti) return false;
+        if (apprenti != that.apprenti) return false;
         if (dateVisite != null ? !dateVisite.equals(that.dateVisite) : that.dateVisite != null) return false;
         if (format != null ? !format.equals(that.format) : that.format != null) return false;
         if (compteRendu != null ? !compteRendu.equals(that.compteRendu) : that.compteRendu != null) return false;
@@ -108,7 +109,7 @@ public class VisiteEntity {
         result = 31 * result + (dateVisite != null ? dateVisite.hashCode() : 0);
         result = 31 * result + (format != null ? format.hashCode() : 0);
         result = 31 * result + (compteRendu != null ? compteRendu.hashCode() : 0);
-        result = 31 * result + idApprenti;
+        result = 31 * result + apprenti.hashCode();
         return result;
     }
 }

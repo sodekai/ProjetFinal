@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.ServletContext;
 
 import java.io.IOException;
+import java.util.List;
 
 public class Tutorat_utils {
 
@@ -57,7 +58,13 @@ public class Tutorat_utils {
             System.out.println(id_utilisateur);
             System.out.println("apprenti" + apprentiSB);
             ApprentiEntity apprentiEntity = apprentiSB.getApprentiByIdUtilisateur(id_utilisateur);
+            List<VisiteEntity> listeVisitesEntity = apprentiSB.getAllApprentiVisites(apprentiEntity.getIdApprenti());
+            List<FeedbackApprentiEntity> listeFeedbackApprentiEntity = apprentiSB.getAllApprentiFeedbacks(apprentiEntity.getIdApprenti());
+            List<EvaluationEcoleEntity> listeEvaluationsEcoleEntity = apprentiSB.getAllApprentiEvaluationsEcole(apprentiEntity.getIdApprenti());
             request.setAttribute("apprenti", apprentiEntity);
+            request.setAttribute("visites", listeVisitesEntity);
+            request.setAttribute("feedbacks", listeFeedbackApprentiEntity);
+            request.setAttribute("evaluationsEcole", listeEvaluationsEcoleEntity);
         } else if(role_utilisateur.equals("tuteur") && tuteurSB != null) {
             // les setAttribute() de Clément
         } else {

@@ -15,12 +15,12 @@ public class VisiteSB {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public VisiteEntity createVisite(Date dateVisite, String format, String compteRendu, int idApprenti) {
+    public VisiteEntity createVisite(Date dateVisite, String format, String compteRendu, ApprentiEntity apprenti) {
         VisiteEntity newVisite = new VisiteEntity();
         newVisite.setDateVisite(dateVisite);
         newVisite.setFormat(format);
         newVisite.setCompteRendu(compteRendu);
-        newVisite.setIdApprenti(idApprenti);
+        newVisite.setApprenti(apprenti);
         em.persist(newVisite);
         return newVisite;
     }
@@ -48,7 +48,7 @@ public class VisiteSB {
         query.setParameter("dateVisite", visite.getDateVisite());
         query.setParameter("format", visite.getFormat());
         query.setParameter("compteRendu", visite.getCompteRendu());
-        query.setParameter("idApprenti", visite.getIdApprenti());
+        query.setParameter("apprenti", visite.getApprenti());
         query.executeUpdate();
     }
 

@@ -25,6 +25,20 @@
     </div>
 
     <div class="bubble-infos bubble-infos-small">
+        <h1>Contact</h1>
+        <table class="tutorat-table">
+            <tr>
+                <td class="tutorat-table-label">No de téléphone</td>
+                <td>${requestScope.apprenti.utilisateur.personne.telephone}</td>
+            </tr>
+            <tr>
+                <td class="tutorat-table-label">Adresse électronique</td>
+                <td>${requestScope.apprenti.utilisateur.personne.adresseElectronique}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="bubble-infos bubble-infos-small">
         <h1>Entreprise</h1>
         <table class="tutorat-table">
             <tr>
@@ -42,7 +56,7 @@
         </table>
     </div>
 
-    <div class="bubble-infos bubble-infos-large">
+    <div class="bubble-infos bubble-infos-small">
         <h1>Mission</h1>
         <table class="tutorat-table">
             <tr>
@@ -71,11 +85,13 @@
                 </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-            </tr>
+            <c:forEach items="${ requestScope.visites }" var="visite">
+                <tr>
+                    <td><c:out value="${ visite.dateVisite }" /></td>
+                    <td><c:out value="${ visite.format }" /></td>
+                    <td><c:out value="${ visite.compteRendu }" /></td>
+                </tr>
+            </c:forEach>
             </tbody>
         </table>
     </div>
@@ -86,14 +102,16 @@
             <thead>
                 <tr>
                     <th style="width: 10%">No</th>
-                    <th>Avis</th>
+                    <th style="text-align: left">Avis</th>
                 </tr>
             </thead>
             <tbody>
+            <c:forEach items="${ requestScope.feedbacks }" var="feedback">
                 <tr>
-                    <td>...</td>
-                    <td>...</td>
+                    <td><c:out value="${ feedback.idFeedbackApprenti }" /></td>
+                    <td style="text-align: left"><c:out value="${ feedback.avis }" /></td>
                 </tr>
+            </c:forEach>
             </tbody>
         </table>
     </div>
@@ -101,47 +119,51 @@
     <div class="bubble-infos bubble-infos-large">
         <h1>Mes Evaluations</h1>
 
-        <div class="bubble-infos-dark">
-            <h3>Evaluation #...</h3>
-            <div class="bubbles-container">
+        <c:forEach items="${ requestScope.evaluationsEcole }" var="evaluationEcole">
+            <div class="bubble-infos-dark">
+                <h3>Evaluation #<c:out value="${ evaluationEcole.idEvaluationEcole }" /></h3>
+                <div class="bubbles-container">
 
-                <div class="bubble-infos bubble-infos-small bordered-thin">
-                    <h4>Soutenance #...</h4>
-                    <table class="tutorat-table">
-                        <tr>
-                            <td class="tutorat-table-label">Date</td>
-                            <td>...</td>
-                        </tr>
-                        <tr>
-                            <td class="tutorat-table-label">Commentaire</td>
-                            <td>...</td>
-                        </tr>
-                        <tr>
-                            <td class="tutorat-table-label">Note finale</td>
-                            <td>...</td>
-                        </tr>
-                    </table>
-                </div>
+                    <div class="bubble-infos bubble-infos-small bordered-thin">
+                        <h4>Soutenance #${evaluationEcole.soutenance.idSoutenance}</h4>
+                        <table class="tutorat-table">
+                            <tr>
+                                <td class="tutorat-table-label">Date</td>
+                                <td>#${evaluationEcole.soutenance.dateSoutenance}</td>
+                            </tr>
+                            <tr>
+                                <td class="tutorat-table-label">Commentaire</td>
+                                <td>${evaluationEcole.soutenance.commentaire}</td>
+                            </tr>
+                            <tr>
+                                <td class="tutorat-table-label">Note finale</td>
+                                <td>${evaluationEcole.soutenance.noteFinale}</td>
+                            </tr>
+                        </table>
+                    </div>
 
-                <div class="bubble-infos bubble-infos-small bordered-thin">
-                    <h4>Mémoire #...</h4>
-                    <table class="tutorat-table">
-                        <tr>
-                            <td class="tutorat-table-label">Thème</td>
-                            <td>...</td>
-                        </tr>
-                        <tr>
-                            <td class="tutorat-table-label">Commentaire</td>
-                            <td>...</td>
-                        </tr>
-                        <tr>
-                            <td class="tutorat-table-label">Note finale</td>
-                            <td>...</td>
-                        </tr>
-                    </table>
+                    <div class="bubble-infos bubble-infos-small bordered-thin">
+                        <h4>Mémoire #${evaluationEcole.memoire.idMemoire}</h4>
+                        <table class="tutorat-table">
+                            <tr>
+                                <td class="tutorat-table-label">Thème</td>
+                                <td>${evaluationEcole.memoire.theme}</td>
+                            </tr>
+                            <tr>
+                                <td class="tutorat-table-label">Commentaire</td>
+                                <td>${evaluationEcole.memoire.commentaire}</td>
+                            </tr>
+                            <tr>
+                                <td class="tutorat-table-label">Note finale</td>
+                                <td>${evaluationEcole.memoire.noteFinale}</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
+        </c:forEach>
+
+
 
     </div>
 </div>
