@@ -27,16 +27,47 @@ public class CORSFilter implements Filter {
         // authentification filter
         HttpSession session = httpRequest.getSession();
         UtilisateurEntity user = (UtilisateurEntity) session.getAttribute("user");
-        System.out.println("req cors " +req);
 
+        System.out.println("req cors " +req);
         String url = httpRequest.getRequestURI();
-        if ((url != null && (url.startsWith(httpRequest.getContextPath() + "/assets/") || url.endsWith("/connexion") || (user != null)))) {
+
+        if(url != null && url.startsWith(httpRequest.getContextPath() + "/api")){
+            System.out.println("API: " +req);
+            chain.doFilter(req, res);
+        }
+
+        else if(user == null &&
+                (url != null &&
+                    (!url.endsWith("/connexion") && !url.endsWith("/")
+                    && !url.startsWith(httpRequest.getContextPath() + "/api")
+                    && !url.startsWith(httpRequest.getContextPath() + "/assets/")
+                    )
+                )
+            ){
+            httpRequest.getRequestDispatcher("/connexion.jsp").forward(httpRequest, httpResponse);
+        } else {
+            chain.doFilter(req, res);
+        }
+
+        /*
+        System.out.println("startsWith api"+(url != null && url.startsWith(httpRequest.getContextPath() + "/api")));
+        if ((url != null && (
+                (  url.startsWith(httpRequest.getContextPath() + "/api")
+                || url.startsWith(httpRequest.getContextPath() + "/assets/")
+                || url.endsWith(".html")
+                //|| (url.endsWith("/connexion"))
+                //|| (user != null)
+                )))) {
+            System.out.println("req cors " +req + "ok");
             chain.doFilter(req, res);
         }
         else {
-            System.out.println("Page de connexion");
-            httpResponse.sendRedirect("connexion");
-        }
+            chain.doFilter(req, res);
+            //System.out.println("Page de connexion");
+            //
+            //httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            //httpResponse.getWriter().write("User not authenticated");
+        }*/
     }
     @Override
     public void init(FilterConfig filterConfig) {

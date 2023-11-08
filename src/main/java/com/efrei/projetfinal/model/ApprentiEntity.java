@@ -14,6 +14,22 @@ import jakarta.persistence.*;
                 query = "SELECT a FROM ApprentiEntity a WHERE a.idApprenti = :idApprenti"
         ),
         @NamedQuery(
+                name = "ApprentiEntity.findAllApprentisByNom",
+                query = "SELECT a FROM ApprentiEntity a WHERE a.utilisateur.personne.nom = :nom OR a.utilisateur.personne.prenom = :nom"
+        ),
+        @NamedQuery(
+                name = "ApprentiEntity.findAllApprentisByEntreprise",
+                query = "SELECT a FROM ApprentiEntity a WHERE a.entreprise.raisonSociale = :raisonSociale"
+        ),
+        @NamedQuery(
+                name = "ApprentiEntity.findAllApprentisByMotCleMission",
+                query = "SELECT a FROM ApprentiEntity a WHERE a.mission.motsCles LIKE :motCleMission"
+        ),
+        @NamedQuery(
+                name = "ApprentiEntity.findAllApprentisByAnneeAcademique",
+                query = "SELECT a FROM ApprentiEntity a WHERE a.anneeAcademique = :anneeAcademique"
+        ),
+        @NamedQuery(
                 name = "ApprentiEntity.findAllVisitesByApprentiId",
                 query = "SELECT v FROM VisiteEntity v WHERE v.apprenti.idApprenti = :idApprenti"
         ),

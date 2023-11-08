@@ -1,8 +1,8 @@
 <%@ include file="header.jsp"%>
 
-Bienvenue !
-<div action="connexion" method="post" class="container card bordered">
-<button>Consulter mon prod</button>
-</div>
+Bienvenue dans la plateforme de tutorat !
+<a href="connexion">
+    Connexion
+</a>
 
 <%@ include file="footer.jsp"%>

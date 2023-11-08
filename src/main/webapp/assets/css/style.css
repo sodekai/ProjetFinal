@@ -14,12 +14,13 @@ body {
     border-bottom: 5px solid #335556;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
 }
 #header #menu {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
+    width: 100%;
 }
 
 /* contenu principal */
@@ -38,6 +39,12 @@ body {
 }
 #container-form-apprentis_infos, #container-liste_apprentis {
     max-width: 600px;
+}
+#container-resultList_apprentis {
+    max-width: 100%;
+}
+#container-search-apprentis{
+    max-width: 80%;
 }
 .bubbles-container {
     display: flex;
@@ -146,10 +153,15 @@ input[type='text'], input[type='password'], select {
 input[type='text']:focus, input[type='password']:focus, select:focus {
     border-color: orange;
 }
+#search-bar-value {
+    font-size: 1.2em;
+    padding: 5px;
+}
 .container-button {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 3px;
 }
 button {
     padding: 5px 10px;

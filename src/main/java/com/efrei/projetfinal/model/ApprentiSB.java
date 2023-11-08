@@ -74,4 +74,39 @@ public class ApprentiSB {
         query.setParameter("idApprenti", idApprenti);
         return query.getResultList();
     }
+
+    public List<ApprentiEntity> getApprentisByWord(String field) {
+        em.clear();
+        TypedQuery<ApprentiEntity> queryByNom = em.createNamedQuery("ApprentiEntity.findAllApprentisByNom", ApprentiEntity.class);
+        queryByNom.setParameter("nom", field);
+        List<ApprentiEntity> resultByNom = queryByNom.getResultList();
+        if(resultByNom.size() > 0){
+            return resultByNom;
+        }
+
+        em.clear();
+        TypedQuery<ApprentiEntity> queryByEntreprise = em.createNamedQuery("ApprentiEntity.findAllApprentisByEntreprise", ApprentiEntity.class);
+        queryByEntreprise.setParameter("raisonSociale", field);
+        List<ApprentiEntity> resultByEntreprise = queryByEntreprise.getResultList();
+        if(resultByEntreprise.size() > 0){
+            return resultByEntreprise;
+        }
+
+        em.clear();
+        TypedQuery<ApprentiEntity> queryByMotCleMission = em.createNamedQuery("ApprentiEntity.findAllApprentisByMotCleMission", ApprentiEntity.class);
+        queryByMotCleMission.setParameter("motCleMission", field);
+        List<ApprentiEntity> resultByMotCleMission = queryByMotCleMission.getResultList();
+        if(resultByMotCleMission.size() > 0){
+            return resultByEntreprise;
+        }
+
+        em.clear();
+        TypedQuery<ApprentiEntity> queryByAnneeAcademique = em.createNamedQuery("ApprentiEntity.findAllApprentisByAnneeAcademique", ApprentiEntity.class);
+        queryByAnneeAcademique.setParameter("anneeAcademique", field);
+        List<ApprentiEntity> resultByAnneeAcademique = queryByAnneeAcademique.getResultList();
+        if(resultByAnneeAcademique.size() > 0){
+            return resultByAnneeAcademique;
+        }
+        return null;
+    }
 }
