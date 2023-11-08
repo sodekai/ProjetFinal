@@ -1,20 +1,17 @@
 package com.efrei.projetfinal;
 
-import com.efrei.projetfinal.model.ApprentiEntity;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-@WebServlet(name = "ListeApprentisServlet", value = "/liste-apprentis")
-public class ListeApprentisServlet extends HttpServlet {
+@WebServlet(name = "ViewApprentiListeServlet", value = "/welcome-tuteur")
+public class WelcomeTuteurServlet extends HttpServlet {
 
-    public ListeApprentisServlet() {
+    public WelcomeTuteurServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

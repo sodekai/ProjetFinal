@@ -22,14 +22,13 @@ public class IndexServlet extends HttpServlet {
         super();
     }
 
-    public void init() throws ServletException {
-        tutorat_utils = new Tutorat_utils(apprentiSB);
-    }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        UtilisateurEntity user = (UtilisateurEntity) session.getAttribute("user");
-        if(user != null){
-            tutorat_utils.dispatch_to_home_page(user, request, response);
+        UtilisateurEntity utilisateurEntity = (UtilisateurEntity) session.getAttribute("user");
+        if(utilisateurEntity != null){
+            String role_utilisateur = utilisateurEntity.getRoleUtilisateur();
+            System.out.println("Utilisateur connecté : "+utilisateurEntity+ "/req: "+ request);
+            tutorat_utils.to_home_page(role_utilisateur, response);
         } else {
             //request.getRequestDispatcher("/accueil.jsp").forward(request, response);
             request.getRequestDispatcher("/connexion.jsp").forward(request, response);

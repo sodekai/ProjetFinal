@@ -129,7 +129,7 @@
                         <table class="tutorat-table">
                             <tr>
                                 <td class="tutorat-table-label">Date</td>
-                                <td>#${evaluationEcole.soutenance.dateSoutenance}</td>
+                                <td>${evaluationEcole.soutenance.dateSoutenance}</td>
                             </tr>
                             <tr>
                                 <td class="tutorat-table-label">Commentaire</td>

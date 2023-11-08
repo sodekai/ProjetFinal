@@ -35,7 +35,7 @@ public class CORSFilter implements Filter {
         }
         else {
             System.out.println("Page de connexion");
-            req.getRequestDispatcher("/connexion.jsp").forward(req, res);
+            httpResponse.sendRedirect("connexion");
         }
     }
     @Override

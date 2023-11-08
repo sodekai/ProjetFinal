@@ -19,14 +19,8 @@ public class ConnexionServlet extends HttpServlet {
     @EJB
     private ApprentiSB apprentiSB;
 
-    private Tutorat_utils tutorat_utils;
-
     public ConnexionServlet() {
         super();
-    }
-
-    public void init() throws ServletException {
-        tutorat_utils = new Tutorat_utils(apprentiSB);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,8 +31,9 @@ public class ConnexionServlet extends HttpServlet {
             System.out.println("L'utilisateur n'est pas authentifié / req connexion : " +request);
             request.getRequestDispatcher("connexion.jsp").forward(request, response);
         } else {
-            System.out.println("L'utilisateur:"+utilisateurEntity);
-            tutorat_utils.dispatch_to_home_page(utilisateurEntity, request, response);
+            String role_utilisateur = utilisateurEntity.getRoleUtilisateur();
+            System.out.println("Utilisateur connecté : "+utilisateurEntity+ "/req: "+ request);
+            Tutorat_utils.to_home_page(role_utilisateur, response);
         }
     }
 
@@ -59,8 +54,9 @@ public class ConnexionServlet extends HttpServlet {
 
         if(utilisateurEntity != null) {
             session.setAttribute("user", utilisateurEntity);
+            String role_utilisateur = utilisateurEntity.getRoleUtilisateur();
             System.out.println("Utilisateur connecté : "+utilisateurEntity+ "/req: "+ request);
-            tutorat_utils.dispatch_to_home_page(utilisateurEntity, request, response);
+            Tutorat_utils.to_home_page(role_utilisateur, response);
         } else {
             request.getRequestDispatcher("connexion.jsp").forward(request, response);
         }
