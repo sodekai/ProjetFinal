@@ -67,7 +67,7 @@ public class ApprentiEntity {
     private String majeure;
 
     @Basic
-    @Column(name = "est_archive", nullable = false, length = 150)
+    @Column(name = "est_archive", nullable = false, length = 1)
     private boolean est_archive;
     /*
     @Basic
