@@ -7,9 +7,9 @@
 
         <class>com.efrei.projetfinal.model.ApprentiEntity</class>
         <class>com.efrei.projetfinal.model.EntrepriseEntity</class>
-        <class>com.efrei.projetfinal.model.EvaluationecoleEntity</class>
-        <class>com.efrei.projetfinal.model.FeedbackapprentiEntity</class>
-        <class>com.efrei.projetfinal.model.MaitreapprentissageEntity</class>
+        <class>com.efrei.projetfinal.model.EvaluationEcoleEntity</class>
+        <class>com.efrei.projetfinal.model.FeedbackApprentiEntity</class>
+        <class>com.efrei.projetfinal.model.MaitreApprentissageEntity</class>
         <class>com.efrei.projetfinal.model.MemoireEntity</class>
         <class>com.efrei.projetfinal.model.MissionEntity</class>
         <class>com.efrei.projetfinal.model.PersonneEntity</class>
@@ -20,8 +20,8 @@
         <properties>
             <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/tutorat"/>
             <property name="toplink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="toplink.jdbc.user" value="sophieminos"/>
-            <property name="toplink.jdbc.password" value="Hermione1+"/>
+            <property name="toplink.jdbc.user" value="root"/>
+            <property name="toplink.jdbc.password" value=""/>
         </properties>
     </persistence-unit>
 </persistence>

@@ -7,26 +7,16 @@
         <thead>
             <tr>
                 <th>Nom</th>
-                <th>Prénom</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
+        <c:forEach items="${ requestScope.tuteurApprenti }" var="apprenti">
             <tr>
-                <td>MINOS</td>
-                <td>Sophie</td>
-                <td><a href="apprenti-infos">Modifier</a></td>
+                <td><c:out value="${ apprenti.utilisateur.nomUtilisateur }" /></td>
+                <td>features</td>
             </tr>
-            <tr>
-                <td>MINOS</td>
-                <td>Sophie</td>
-                <td><a href="apprenti-infos">Modifier</a></td>
-            </tr>
-            <tr>
-                <td>MINOS</td>
-                <td>Sophie</td>
-                <td><a href="apprenti-infos">Modifier</a></td>
-            </tr>
+        </c:forEach>
         </tbody>
     </table>
 </div>

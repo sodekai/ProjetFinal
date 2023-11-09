@@ -30,6 +30,10 @@ import jakarta.persistence.*;
                 query = "SELECT a FROM ApprentiEntity a WHERE a.anneeAcademique = :anneeAcademique"
         ),
         @NamedQuery(
+                name = "ApprentiEntity.findAllApprentisByTuteur",
+                query = "SELECT a FROM ApprentiEntity a WHERE a.tuteur = :idTuteur"
+        ),
+        @NamedQuery(
                 name = "ApprentiEntity.findAllVisitesByApprentiId",
                 query = "SELECT v FROM VisiteEntity v WHERE v.apprenti.idApprenti = :idApprenti"
         ),
