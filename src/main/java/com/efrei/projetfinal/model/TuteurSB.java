@@ -39,7 +39,11 @@ public class TuteurSB {
         query.setParameter("idTuteur", idTuteur);
         return query.getSingleResult();
     }
-
+    public List<ApprentiEntity> getAllApprentibyTuteurUserId(int idTuteurUser) {
+        TypedQuery<ApprentiEntity> query = em.createNamedQuery("TuteurEntity.findAllApprentisByTuteurUserId", ApprentiEntity.class);
+        query.setParameter("idTuteurUser", idTuteurUser);
+        return query.getResultList();
+    }
     public void updateTuteur(TuteurEntity tuteur) {
         if (tuteur != null && tuteur.getIdTuteur() > 0) {
             Query query = em.createNamedQuery("TuteurEntity.updateUtilisateur");
@@ -53,5 +57,11 @@ public class TuteurSB {
         TypedQuery<ApprentiEntity> query = em.createNamedQuery("TuteurEntity.findAllApprentisByTuteurId", ApprentiEntity.class);
         query.setParameter("idTuteur", idTuteur);
         return query.getResultList();
+    }
+
+    public TuteurEntity getTuteurUserId(int idUser) {
+        TypedQuery<TuteurEntity> query = em.createNamedQuery("TuteurEntity.getTuteurUserId", TuteurEntity.class);
+        query.setParameter("idUser", idUser);
+        return query.getSingleResult();
     }
 }

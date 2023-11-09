@@ -34,6 +34,12 @@ public class ApprentiSB {
         return query.getSingleResult();
     }
 
+    public List<ApprentiEntity> getApprentiByTuteur (int idTuteur){
+        TypedQuery<ApprentiEntity> query = em.createNamedQuery("ApprentiEntity.findAllApprentisByTuteur", ApprentiEntity.class);
+        query.setParameter("idTuteur", idTuteur);
+        return query.getResultList();
+    }
+
     public void createApprenti(String nom, String prenom, String adresseElectronique, String telephone, String nomUtilisateur, String motDePasse, String anneeAcademique, String majeure) {
         UtilisateurEntity createdUtilisateur = utilisateurSB.createUtilisateur(nom, prenom, adresseElectronique, telephone, nomUtilisateur, motDePasse);
 

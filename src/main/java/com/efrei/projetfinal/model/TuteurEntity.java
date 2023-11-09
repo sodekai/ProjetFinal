@@ -14,13 +14,22 @@ import jakarta.persistence.*;
                 query = "SELECT t FROM TuteurEntity t WHERE t.idTuteur = :idTuteur"
         ),
         @NamedQuery(
+                name = "TuteurEntity.getTuteurUserId",
+                query = "SELECT t FROM TuteurEntity t WHERE t.utilisateur = :idTuteur"
+        ),
+        @NamedQuery(
                 name = "TuteurEntity.findAllApprentisByTuteurId",
                 query = "SELECT a FROM ApprentiEntity a WHERE a.tuteur.idTuteur = :idTuteur"
+        ),
+        @NamedQuery(
+                name = "TuteurEntity.findAllApprentisByTuteurUserId",
+                query = "SELECT a FROM ApprentiEntity a WHERE a.tuteur.utilisateur.idUtilisateur = :idTuteurUser"
         ),
         @NamedQuery(
                 name = "TuteurEntity.updateUtilisateur",
                 query = "UPDATE TuteurEntity t SET t.utilisateur = :utilisateur WHERE t.idTuteur = :idTuteur"
         )
+
 })
 
 public class TuteurEntity {

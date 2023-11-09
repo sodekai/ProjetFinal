@@ -30,6 +30,10 @@ import jakarta.persistence.*;
                 query = "SELECT a FROM ApprentiEntity a WHERE a.anneeAcademique = :anneeAcademique"
         ),
         @NamedQuery(
+                name = "ApprentiEntity.findAllApprentisByTuteur",
+                query = "SELECT a FROM ApprentiEntity a WHERE a.tuteur = :idTuteur"
+        ),
+        @NamedQuery(
                 name = "ApprentiEntity.findAllVisitesByApprentiId",
                 query = "SELECT v FROM VisiteEntity v WHERE v.apprenti.idApprenti = :idApprenti"
         ),
@@ -63,7 +67,7 @@ public class ApprentiEntity {
     private String majeure;
 
     @Basic
-    @Column(name = "est_archive", nullable = false, length = 150)
+    @Column(name = "est_archive", nullable = false, length = 1)
     private boolean est_archive;
     /*
     @Basic
