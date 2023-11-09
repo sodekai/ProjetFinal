@@ -11,7 +11,7 @@
             </tr>
         </thead>
         <tbody>
-        <c:forEach items="${ requestScope.tuteurApprenti }" var="apprenti">
+        <c:forEach items="${ requestScope.tuteurApprentiList }" var="apprenti">
             <tr>
                 <td><c:out value="${ apprenti.utilisateur.nomUtilisateur }" /></td>
                 <td>features</td>

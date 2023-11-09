@@ -26,7 +26,7 @@ public class WelcomeTuteurServlet extends HttpServlet {
         HttpSession session = request.getSession();
         UtilisateurEntity utilisateurEntity = (UtilisateurEntity) session.getAttribute("user");
         apprentiEntityList = tuteurSB.getAllApprentibyTuteurUserId(utilisateurEntity.getIdUtilisateur());
-        session.setAttribute("tuteurApprentiList", apprentiEntityList);
+        request.setAttribute("tuteurApprentiList", apprentiEntityList);
         request.getRequestDispatcher("/liste_apprentis.jsp").forward(request, response);
     }
 

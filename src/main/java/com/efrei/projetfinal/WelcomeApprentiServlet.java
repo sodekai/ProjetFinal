@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ApprentiInfosViewServlet", value = "/welcome-apprenti")
+@WebServlet(name = "WelcomeApprentiServlet", value = "/welcome-apprenti")
 public class WelcomeApprentiServlet extends HttpServlet {
     @EJB
     private ApprentiSB apprentiSB;

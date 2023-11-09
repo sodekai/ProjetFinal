@@ -78,11 +78,11 @@
         <h1>Mes Visites</h1>
         <table class="tutorat-table tutorat-table-liste">
             <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Format</th>
-                    <th>Compte-rendu</th>
-                </tr>
+            <tr>
+                <th>Date</th>
+                <th>Format</th>
+                <th>Compte-rendu</th>
+            </tr>
             </thead>
             <tbody>
             <c:forEach items="${ requestScope.visites }" var="visite">
@@ -100,10 +100,10 @@
         <h1>Mes Feedbacks</h1>
         <table class="tutorat-table tutorat-table-liste">
             <thead>
-                <tr>
-                    <th style="width: 10%">No</th>
-                    <th style="text-align: left">Avis</th>
-                </tr>
+            <tr>
+                <th style="width: 10%">No</th>
+                <th style="text-align: left">Avis</th>
+            </tr>
             </thead>
             <tbody>
             <c:forEach items="${ requestScope.feedbacks }" var="feedback">
