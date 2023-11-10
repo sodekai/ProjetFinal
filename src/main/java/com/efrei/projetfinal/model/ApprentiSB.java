@@ -59,8 +59,8 @@ public class ApprentiSB {
         query.setParameter("idApprenti", apprenti.getIdApprenti());
         query.executeUpdate();
     }
-    public void estArchive(String Idapprenti){
-        Query query = em.createNamedQuery("ApprentiEntity.est_archive");
+    public void updateArchive(String Idapprenti){
+        Query query = em.createNamedQuery("ApprentiEntity.updateArchive");
         query.setParameter("idApprenti", Idapprenti);
         query.executeUpdate();
     }

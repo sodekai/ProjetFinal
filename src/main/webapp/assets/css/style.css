@@ -40,11 +40,14 @@ body {
 #container-form-apprentis_infos, #container-liste_apprentis {
     max-width: 600px;
 }
-#container-resultList_apprentis {
+
+#container-lg-liste-apprentis {
     max-width: 100%;
 }
-#container-search-apprentis{
-    max-width: 80%;
+
+#container-resultList_apprentis {
+    max-width: 95%;
+    margin: 20px;
 }
 .bubbles-container {
     display: flex;

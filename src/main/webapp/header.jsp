@@ -17,8 +17,6 @@
         <div>
             <c:choose>
                 <c:when test="${sessionScope.user != null && sessionScope.user.roleUtilisateur == 'tuteur'}">
-                    <a href="search-apprenti.html">Recherche</a>
-                    <a href="tuteur-profile">Mon profil</a>
                     <a href="welcome-tuteur">Ma liste d'apprentis</a>
                 </c:when>
             </c:choose>

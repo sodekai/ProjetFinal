@@ -7,7 +7,8 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="container" id="container-search-apprentis">
+<div class="container" id="container-lg-liste-apprentis">
+    <a href="welcome-tuteur">Retour à ma liste d'apprentis</a>
     <h1>Recherche d'apprentis</h1>
     <form id="search-bar-form" action="">
         <input type="text" value="" id="search-bar-value" placeholder="Nom ou prénom apprenti, entreprise, mot-clé mission ou année académique">
@@ -18,7 +19,7 @@
 
     <h1>Résultat(s)</h1>
     <div class="container card bordered" id="container-resultList_apprentis">
-        <table id="tutorat-apprentis-result-list" class="tutorat-table tutorat-table-liste">
+        <table class="tutorat-table tutorat-table-liste">
             <thead>
             <tr>
                 <th>Nom</th>
@@ -29,10 +30,11 @@
                 <th>Mission</th>
                 <th>Maitre d'apprentissage</th>
                 <th>Tuteur</th>
-                <th>Actions</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
+            <tr><td colspan="9">Aucun apprenti à afficher</td></tr>
             </tbody>
         </table>
     </div>
@@ -41,13 +43,14 @@
     $('#search-bar-form').on('submit', (e)=>{
         e.preventDefault();
         let field = $('#search-bar-value').val();
+        let body_table = $('#container-resultList_apprentis table tbody');
         $.ajax({
             url: 'api/search/apprentis/'+field,
             method: 'GET',
             dataType: 'json',
             success: (apprentisList)=>{
                 console.log(apprentisList, $(apprentisList).length);
-                $('#tutorat-apprentis-result-list tbody').html('');
+                body_table.html('');
                 if($(apprentisList).length > 0){
                     $(apprentisList).each((i, apprenti)=>{
                         row_apprenti = '<tr>'
@@ -59,18 +62,24 @@
                             + '<td>'+apprenti.mission.motsCles+'</td>'
                             + '<td>'+apprenti.maitreApprentissage.personne.prenom+' '+apprenti.maitreApprentissage.personne.nom+'</td>'
                             + '<td>'+apprenti.tuteur.utilisateur.personne.prenom+' '+apprenti.tuteur.utilisateur.personne.nom+'</td>'
-                            + '<td><a href="apprenti-infos/'+apprenti.idApprenti+'">Modifier</a></td>'
+                            + '<td>'
+                            + '<button onClick="location.href=\'apprenti-infos/'+apprenti.idApprenti+'\'">'
+                            + '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-eye-fill" viewBox="0 0 16 16">'
+                            + '<path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>'
+                            + '<path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>'
+                            + '</svg>'
+                            + '</button></td>'
                             + '</tr>';
-                        $('#tutorat-apprentis-result-list tbody').append(row_apprenti);
+                        body_table.append(row_apprenti);
                     })
                 } else {
                     row_apprenti = '<tr><td colspan="9">Aucun résultat pour "'+field+'"</td></tr>';
-                    $('#tutorat-apprentis-result-list tbody').html(row_apprenti);
+                    body_table.html(row_apprenti);
                 }
             },
             error:(xhr, status, error)=>{
                 row_apprenti = '<tr><td colspan="9">Aucun résultat pour "'+field+'"</td></tr>';
-                $('#tutorat-apprentis-result-list tbody').html(row_apprenti);
+                body_table.html(row_apprenti);
             }
         })
     });
