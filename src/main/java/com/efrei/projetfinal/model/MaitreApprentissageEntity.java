@@ -16,6 +16,7 @@ import jakarta.persistence.*;
                 name = "MaitreApprentissageEntity.update",
                 query = "UPDATE MaitreApprentissageEntity m SET m.remarque = :remarque, m.poste = :poste, m.entreprise = :entreprise, m.personne = :personne WHERE m.idMaitreApprentissage = :idMaitreApprentissage"
         )
+
 })
 @Table(name = "maitre_apprentissage", schema = "tutorat", catalog = "")
 public class MaitreApprentissageEntity {
@@ -75,6 +76,10 @@ public class MaitreApprentissageEntity {
 
     public void setPersonne(PersonneEntity personne) {
         this.personne = personne;
+    }
+
+    public int getId() {
+        return idMaitreApprentissage;
     }
 
     @Override

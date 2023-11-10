@@ -8,8 +8,8 @@ import java.util.List;
 @Stateless
 public class PersonneSB {
 
-    @PersistenceContext
-    private EntityManager em;
+    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+    EntityManager em = entityManagerFactory.createEntityManager();
 
     public PersonneEntity createPersonne(String nom, String prenom, String adresseElectronique, String telephone) {
         PersonneEntity newPersonne = new PersonneEntity();
@@ -17,10 +17,10 @@ public class PersonneSB {
         newPersonne.setPrenom(prenom);
         newPersonne.setAdresseElectronique(adresseElectronique);
         newPersonne.setTelephone(telephone);
-
+        em.getTransaction().begin();
         em.persist(newPersonne);
         em.flush();
-
+        em.getTransaction().commit();
         return newPersonne;
     }
 
@@ -36,13 +36,7 @@ public class PersonneSB {
     }
 
     public void updatePersonne(PersonneEntity personne) {
-        Query query = em.createNamedQuery("PersonneEntity.updateDetailsById");
-        query.setParameter("idPersonne", personne.getIdPersonne());
-        query.setParameter("nom", personne.getNom());
-        query.setParameter("prenom", personne.getPrenom());
-        query.setParameter("adresseElectronique", personne.getAdresseElectronique());
-        query.setParameter("telephone", personne.getTelephone());
-
-        query.executeUpdate();
+        em.merge(personne);
+        em.clear();
     }
 }

@@ -40,7 +40,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ApprentiInfoServlet</servlet-name>
-        <url-pattern>/apprenti-infos</url-pattern>
+        <url-pattern>/apprenti-infos/*</url-pattern>
     </servlet-mapping>
 
     <servlet>

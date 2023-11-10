@@ -39,5 +39,6 @@ public class ArchiverApprentiServlet extends HttpServlet {
         apprentiEntityList = tuteurSB.getAllApprentibyTuteurUserId(utilisateurEntity.getIdUtilisateur());
         request.setAttribute("tuteurApprentiList", apprentiEntityList);
         request.getRequestDispatcher("/liste_apprentis.jsp").forward(request, response);
+        
     }
 }

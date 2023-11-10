@@ -16,12 +16,14 @@ public class EntrepriseSB {
     @EJB
     private UtilisateurSB utilisateurSB;
     public EntrepriseEntity createEntreprise(String raisonSociale, String adresse, String informationsUtiles) {
+        em.getTransaction().begin();
         EntrepriseEntity newEntreprise = new EntrepriseEntity();
         newEntreprise.setRaisonSociale(raisonSociale);
         newEntreprise.setAdresse(adresse);
         newEntreprise.setInformationsUtiles(informationsUtiles);
         em.persist(newEntreprise);
         em.flush();
+        em.getTransaction().commit();
         return newEntreprise;
     }
 
@@ -37,7 +39,10 @@ public class EntrepriseSB {
     }
 
     public void updateEntreprise(EntrepriseEntity entreprise) {
+        em.getTransaction().begin();
         em.merge(entreprise);
+        em.getTransaction().commit();
+        em.clear();
     }
 
     public void deleteEntreprise(int idEntreprise) {

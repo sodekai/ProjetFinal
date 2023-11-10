@@ -8,8 +8,8 @@ import java.util.List;
 
 @Stateless
 public class MaitreApprentissageSB {
-    @PersistenceContext
-    private EntityManager em;
+    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+    EntityManager em = entityManagerFactory.createEntityManager();
 
     @EJB
     private PersonneSB personneSB;
@@ -18,16 +18,18 @@ public class MaitreApprentissageSB {
     private EntrepriseSB entrepriseSB;
 
     public MaitreApprentissageEntity createMaitreApprentissage(String nom, String prenom, String adresseElectronique, String telephone, String remarque, String poste, int idEntreprise) {
+
         PersonneEntity createdPersonne = personneSB.createPersonne(nom, prenom, adresseElectronique, telephone);
         EntrepriseEntity associatedEntreprise = entrepriseSB.getEntrepriseById(idEntreprise);
-
         MaitreApprentissageEntity newMaitre = new MaitreApprentissageEntity();
         newMaitre.setRemarque(remarque);
         newMaitre.setPoste(poste);
         newMaitre.setPersonne(createdPersonne);
         newMaitre.setEntreprise(associatedEntreprise);
+        em.getTransaction().begin();
         em.persist(newMaitre);
         em.flush();
+        em.getTransaction().commit();
 
         return newMaitre;
     }
@@ -44,13 +46,10 @@ public class MaitreApprentissageSB {
     }
 
     public void updateMaitre(MaitreApprentissageEntity maitre) {
-        Query query = em.createNamedQuery("MaitreApprentissageEntity.update");
-        query.setParameter("remarque", maitre.getRemarque());
-        query.setParameter("poste", maitre.getPoste());
-        query.setParameter("entreprise", maitre.getEntreprise());
-        query.setParameter("personne", maitre.getPersonne());
-        query.setParameter("idMaitreApprentissage", maitre.getIdMaitreApprentissage());
-        query.executeUpdate();
+        em.getTransaction().begin();
+        em.merge(maitre);
+        em.getTransaction().commit();
+        em.clear();
     }
 
 

@@ -25,7 +25,6 @@ public class UtilisateurSB {
         newUser.setPersonne(createdPersonne);
         em.persist(newUser);
         em.flush();
-
         return newUser;
     }
 

@@ -16,6 +16,14 @@ import jakarta.persistence.*;
         @NamedQuery(
                 name = "EntrepriseEntity.delete",
                 query = "DELETE FROM EntrepriseEntity e WHERE e.idEntreprise = :idEntreprise"
+        ),
+        @NamedQuery(
+                name = "EntrepriseEntity.update",
+                query = "UPDATE EntrepriseEntity e SET e.raisonSociale = :raisonSociale, e.adresse = :adresse, e.informationsUtiles = :informationsUtiles WHERE e.idEntreprise = :idEntreprise"
+        ),
+        @NamedQuery(
+                name = "EntrepriseEntity.create",
+                query = "INSERT INTO EntrepriseEntity e (e.raisonSociale, e.adresse, e.informationsUtiles) VALUES (:raisonSociale, :adresse, :informationsUtiles)"
         )
 })
 public class EntrepriseEntity {
@@ -63,6 +71,10 @@ public class EntrepriseEntity {
 
     public void setInformationsUtiles(String informationsUtiles) {
         this.informationsUtiles = informationsUtiles;
+    }
+
+    public int getId() {
+        return idEntreprise;
     }
 
     @Override
