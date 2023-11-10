@@ -85,7 +85,7 @@
             <td>
                 <button style="display:none;" type="button" onclick="window.location.href='<%= request.getContextPath() %>/add-maitre-apprentissage';" class="addMaitreButton">add</button>
             </td>
-            <td> <button style="display:none;" class="editMaitreButton">modify</button> </td>
+            <td> <button type="button" style="display:none;" class="editMaitreButton">modify</button> </td>
         </tr>
     </table>
 
@@ -103,7 +103,6 @@
 <script>
     function toggleEdit() {
         var isReadOnly = document.getElementById('modifyButton').style.display !== 'none';
-
 
         document.querySelectorAll('.tutorat-table td').forEach(function(element) {
             if (element.id.endsWith('Text') && element.id !== 'tuteurText') {
@@ -128,53 +127,37 @@
         toggleEdit();
     }
 
-    function updateModifyButtonUrl(entrepriseId) {
-        var modifyButton = document.querySelector('.editEntrepriseButton');
-        var modifyUrl = '<%= request.getContextPath() %>/modify-entreprise/' + entrepriseId;
-        modifyButton.onclick = function() {
-            window.location.href = modifyUrl;
+    function updateModifyButtonUrl(entrepriseId, maitreApprentissageId) {
+        var modifyEntrepriseButton = document.querySelector('.editEntrepriseButton');
+        modifyEntrepriseButton.onclick = function() {
+            window.location.href = '<%= request.getContextPath() %>/modify-entreprise/' + entrepriseId;
+        };
+
+        var modifyMaitreButton = document.querySelector('.editMaitreButton');
+        modifyMaitreButton.onclick = function() {
+            window.location.href = '<%= request.getContextPath() %>/modify-maitre-apprentissage/' + maitreApprentissageId;
         };
     }
 
-</script>
+    document.getElementById('entreprise').addEventListener('change', function() {
+        updateModifyButtonUrl(this.value, document.getElementById('maitreApprentissage').value);
+    });
+    document.getElementById('maitreApprentissage').addEventListener('change', function() {
+        updateModifyButtonUrl(document.getElementById('entreprise').value, this.value);
+    });
 
-<%
-    String updateStatus = request.getParameter("updateStatus");
-    if (updateStatus != null) {
-%>
-<script>
     window.onload = function() {
-        if ("<%= updateStatus %>" === "success") {
+        var initialEntrepriseId = document.getElementById('entreprise').value;
+        var initialMaitreApprentissageId = document.getElementById('maitreApprentissage').value;
+        updateModifyButtonUrl(initialEntrepriseId, initialMaitreApprentissageId);
+
+        var updateStatus = "<%= request.getParameter("updateStatus") %>";
+        if (updateStatus === "success") {
             alert('Update succeeded!');
-        } else if ("<%= updateStatus %>" === "failure") {
+        } else if (updateStatus === "failure") {
             alert('Update failed!');
         }
     };
 </script>
-<%
-    }
-%>
 
-<script>
-    /*
-    $(document).ready(()=>{
-        $.ajax({
-            type: 'GET',
-            dataType: 'json',
-            url: '/tutoratApprentis/api/apprenti/1',
-            success: (response)=>{
-                console.log(response);
-                if(response.length > 0){
-                    $('#anneeAcademique').val(response.anneeAcademique);
-                    $('#entreprise').val(response.entreprise.raisonSociale);
-                    $('#maitreApprentissage').val(response.maitreApprentissage.personne.nom+" "+response.maitreApprentissage.personne.prenom);
-
-                }
-            },
-            error: (response)=>{
-                console.log(response);
-            }
-        })
-    });*/
-</script>
 
