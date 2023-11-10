@@ -169,6 +169,10 @@ public class ApprentiEntity {
         this.utilisateur = utilisateur;
     }
 
+    public boolean isEst_archive() {
+        return est_archive;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

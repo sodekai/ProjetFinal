@@ -27,16 +27,16 @@
         <tbody>
         <c:forEach items="${ requestScope.tuteurApprentiList }" var="apprenti">
             <c:choose>
-            <c:when test="${not apprenti.est_archive}">
+            <c:when test="${!apprenti.isEst_archive()}">
             <tr>
                 <td>${ apprenti.utilisateur.personne.nom }</td>
                 <td><c:out value="${ apprenti.utilisateur.personne.prenom }"/></td>
                 <td><c:out value="${ apprenti.entreprise.raisonSociale }"/></td>
                 <td><c:out value="${ apprenti.anneeAcademique }"/></td>
-                <td><c:out value="${ apprenti.majeure.mission.motsCles }"/></td>
+                <td><c:out value="${ apprenti.majeure}"/></td>
+                <td><c:out value="${ apprenti.mission.metierCible }"/></td>
                 <td><c:out value="${ apprenti.maitreApprentissage.personne.nom }"/></td>
-                <td><c:out value="${ apprenti.tuteur.personne.nom }"/></td>
-                <td><c:out value="${ apprenti.utilisateur.nomUtilisateur }"/></td>
+                <td><c:out value="${ apprenti.tuteur.utilisateur.personne.nom }"/></td>
                 <td>
                     <button onclick="location.href='/apprenti-infos/<c:out value='${apprenti.idApprenti}'/>'">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
