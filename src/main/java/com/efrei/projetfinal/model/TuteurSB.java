@@ -45,12 +45,10 @@ public class TuteurSB {
         return query.getResultList();
     }
     public void updateTuteur(TuteurEntity tuteur) {
-        if (tuteur != null && tuteur.getIdTuteur() > 0) {
-            Query query = em.createNamedQuery("TuteurEntity.updateUtilisateur");
-            query.setParameter("utilisateur", tuteur.getUtilisateur());
-            query.setParameter("idTuteur", tuteur.getIdTuteur());
-            query.executeUpdate();
-        }
+        em.getTransaction().begin();
+        em.merge(tuteur);
+        em.getTransaction().commit();
+        em.clear();
     }
 
     public List<ApprentiEntity> getAllTuteurApprentis(int idTuteur) {

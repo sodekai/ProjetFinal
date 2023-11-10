@@ -47,12 +47,7 @@ public class UtilisateurSB {
     }
 
     public void updateUtilisateur(UtilisateurEntity utilisateur) {
-        Query query = em.createNamedQuery("UtilisateurEntity.updateDetailsById");
-        query.setParameter("idUtilisateur", utilisateur.getIdUtilisateur());
-        query.setParameter("nomUtilisateur", utilisateur.getNomUtilisateur());
-        query.setParameter("motDePasse", utilisateur.getMotDePasse());
-
-        query.executeUpdate();
+        em.merge(utilisateur);
     }
 }
 

@@ -61,10 +61,10 @@ public class ApprentiSB {
     }
 
     public void modifierApprenti(ApprentiEntity apprentiAModifier) {
-        //em.getTransaction().begin();
+        em.getTransaction().begin();
         em.merge(apprentiAModifier);
+        em.getTransaction().commit();
         em.clear();
-        //em.getTransaction().commit();
     }
 
 

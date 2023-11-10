@@ -37,6 +37,5 @@ public class PersonneSB {
 
     public void updatePersonne(PersonneEntity personne) {
         em.merge(personne);
-        em.clear();
     }
 }
