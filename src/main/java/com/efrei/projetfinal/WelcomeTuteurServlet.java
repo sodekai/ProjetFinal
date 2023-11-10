@@ -35,8 +35,5 @@ public class WelcomeTuteurServlet extends HttpServlet {
     ;
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String apprentiId = request.getParameter("apprentiId");
-        apprentiSB.updateArchive(apprentiId);
-        request.getRequestDispatcher("/liste_apprentis.jsp").forward(request, response);
     }
 }

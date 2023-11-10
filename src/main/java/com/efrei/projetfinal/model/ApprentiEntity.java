@@ -59,10 +59,27 @@ import jakarta.persistence.*;
         )
 })
 public class ApprentiEntity {
+    public ApprentiEntity(int idApprenti, String anneeAcademique, String majeure, boolean est_archive, TuteurEntity tuteur, MaitreApprentissageEntity maitreApprentissage, EntrepriseEntity entreprise, UtilisateurEntity utilisateur, MissionEntity mission) {
+        this.idApprenti = idApprenti;
+        this.anneeAcademique = anneeAcademique;
+        this.majeure = majeure;
+        this.est_archive = est_archive;
+        this.tuteur = tuteur;
+        this.maitreApprentissage = maitreApprentissage;
+        this.entreprise = entreprise;
+        this.utilisateur = utilisateur;
+        this.mission = mission;
+    }
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id_apprenti", nullable = false)
     private int idApprenti;
+
+    public void setEst_archive(boolean est_archive) {
+        this.est_archive = est_archive;
+    }
+
     @Basic
     @Column(name = "annee_academique", nullable = true, length = 150)
     private String anneeAcademique;
@@ -104,6 +121,10 @@ public class ApprentiEntity {
     @OneToOne
     @JoinColumn(name = "id_mission")
     private MissionEntity mission;
+
+    public ApprentiEntity() {
+
+    }
 
     public int getIdApprenti() {
         return idApprenti;

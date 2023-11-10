@@ -59,10 +59,12 @@ public class ApprentiSB {
         query.setParameter("idApprenti", apprenti.getIdApprenti());
         query.executeUpdate();
     }
-    public void updateArchive(String Idapprenti){
-        Query query = em.createNamedQuery("ApprentiEntity.updateArchive");
-        query.setParameter("idApprenti", Idapprenti);
-        query.executeUpdate();
+
+    public void modifierApprenti(ApprentiEntity apprentiAModifier) {
+        em.getTransaction().begin();
+        em.merge(apprentiAModifier);
+        em.getTransaction().commit();
+        em.clear();
     }
 
 
