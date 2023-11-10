@@ -52,6 +52,10 @@ import jakarta.persistence.*;
         @NamedQuery(
                 name = "ApprentiEntity.update",
                 query = "UPDATE ApprentiEntity a SET a.anneeAcademique = :anneeAcademique, a.majeure = :majeure, a.utilisateur = :utilisateur WHERE a.idApprenti = :idApprenti"
+        ),
+        @NamedQuery(
+                name = "ApprentiEntity.est_archive",
+                query = "UPDATE ApprentiEntity a SET a.est_archive = false WHERE a.idApprenti = :idApprenti"
         )
 })
 public class ApprentiEntity {

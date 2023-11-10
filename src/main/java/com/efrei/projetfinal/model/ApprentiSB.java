@@ -5,7 +5,6 @@ import jakarta.ejb.Stateless;
 import jakarta.persistence.*;
 
 import java.util.List;
-import java.util.Map;
 
 @Stateless
 public class ApprentiSB {
@@ -58,6 +57,11 @@ public class ApprentiSB {
         query.setParameter("majeure", apprenti.getMajeure());
         query.setParameter("utilisateur", apprenti.getUtilisateur());
         query.setParameter("idApprenti", apprenti.getIdApprenti());
+        query.executeUpdate();
+    }
+    public void estArchive(String Idapprenti){
+        Query query = em.createNamedQuery("ApprentiEntity.est_archive");
+        query.setParameter("idApprenti", Idapprenti);
         query.executeUpdate();
     }
 

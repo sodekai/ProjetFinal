@@ -16,6 +16,8 @@ import java.util.List;
 public class WelcomeTuteurServlet extends HttpServlet {
     @EJB
     private TuteurSB tuteurSB;
+    @EJB
+    private ApprentiSB apprentiSB;
     List<ApprentiEntity> apprentiEntityList;
     public WelcomeTuteurServlet() {
         super();
@@ -33,6 +35,8 @@ public class WelcomeTuteurServlet extends HttpServlet {
     ;
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String apprentiIdd = request.getParameter("apprentiId");
+        apprentiSB.estArchive(apprentiIdd);
+        request.getRequestDispatcher("/liste_apprentis.jsp").forward(request, response);
     }
 }
